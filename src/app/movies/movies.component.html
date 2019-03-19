@@ -1,0 +1,7 @@
+<ul class="heroes">
+  <li *ngFor="let movie of movies">
+    <a routerLink="/detail/{{movie.id}}">
+       {{movie.title}}
+    </a>
+  </li>
+</ul>

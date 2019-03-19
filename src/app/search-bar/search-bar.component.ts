@@ -3,6 +3,7 @@ import {Observable, Subject} from 'rxjs';
 import {Movie} from '../entity/movie';
 import {MovieService} from '../service/movie.service';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -14,12 +15,26 @@ export class SearchBarComponent implements OnInit {
   private searchTerms = new Subject<string>();
 
   constructor(
-    private movieService: MovieService
+    private movieService: MovieService,
+    private router: Router,
   ) {
   }
 
-  search(term: string): void {
+  /**
+   * 关键词提示
+   */
+  searchTerm(term: string): void {
     this.searchTerms.next(term.trim());
+  }
+
+  /**
+   * 点击搜索
+   */
+  search(term: string): void {
+    if (!term.trim()) {
+      return;
+    }
+    this.router.navigate(['/movies', {term}]);
   }
 
   ngOnInit(): void {

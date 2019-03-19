@@ -9,6 +9,7 @@ import { SubEditorComponent } from './sub-editor/sub-editor.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MessagesComponent } from './messages/messages.component';
+import { MoviesComponent } from './movies/movies.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MessagesComponent } from './messages/messages.component';
     SubEditorComponent,
     HeaderComponent,
     SearchBarComponent,
-    MessagesComponent
+    MessagesComponent,
+    MoviesComponent
   ],
   imports: [
     BrowserModule,

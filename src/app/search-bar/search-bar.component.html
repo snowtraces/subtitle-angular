@@ -1,4 +1,8 @@
-<input #searchBox type="search" (input)="search(searchBox.value)" />
+<input #searchBox type="search"
+       (input)="searchTerm(searchBox.value)"
+       (blur)="searchTerm('')"
+/>
+<button type="button" (click)="search(searchBox.value)" >搜索</button>
 <ul class="search-result">
   <li *ngFor="let movie of movies$ | async" >
     <a routerLink="/detail/{{movie.id}}">

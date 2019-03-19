@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {Movie} from '../entity/movie';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {MessageService} from './message.service';
 import {catchError, tap} from 'rxjs/operators';
 
@@ -10,6 +10,7 @@ import {catchError, tap} from 'rxjs/operators';
 })
 export class MovieService {
   private movieSearch = 'api/searchMovies';
+  private movieList = 'api/listMovies';
 
   constructor(
     private http: HttpClient,
@@ -35,14 +36,29 @@ export class MovieService {
     };
   }
 
+  /**
+   * 关键词查询
+   */
   searchMovies(term: string): Observable<Movie[]> {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Movie[]>(`${this.movieSearch}?name=${term}`).pipe(
+    return this.http.get<Movie[]>(`${this.movieSearch}?title=${term}`).pipe(
       tap(_ => this.log(`found movies matching "${term}"`)),
       catchError(this.handleError<Movie[]>('searchHeroes', []))
     );
+  }
+
+  /**
+   * 列表查询
+   */
+  getMovies(title: string): Observable<Movie[]> {
+    let params = new HttpParams().set('title', title);
+    return this.http.get<Movie[]>(this.movieList, {params: params})
+      .pipe(
+        tap(_ => this.log('fetched heroes')),
+        catchError(this.handleError<Movie[]>('getMovies', []))
+      );
   }
 
 }
