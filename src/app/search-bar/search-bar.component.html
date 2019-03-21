@@ -7,6 +7,9 @@
   <li *ngFor="let movie of movies$ | async" >
     <a routerLink="/detail/{{movie.id}}">
       {{movie.title}}
+      <span *ngIf="movie.year != 0">
+        {{movie.year}}
+      </span>
     </a>
   </li>
 </ul>
