@@ -11,6 +11,7 @@ import {catchError, tap} from 'rxjs/operators';
 export class MovieService {
   private movieSearch = 'api/searchMovies';
   private movieList = 'api/listMovies';
+  private moviePath = 'api/movie';
 
   constructor(
     private http: HttpClient,
@@ -53,12 +54,20 @@ export class MovieService {
    * 列表查询
    */
   getMovies(title: string): Observable<Movie[]> {
-    let params = new HttpParams().set('title', title);
-    return this.http.get<Movie[]>(this.movieList, {params: params})
+    const params = new HttpParams().set('title', title);
+    return this.http.get<Movie[]>(this.movieList, {params})
       .pipe(
         tap(_ => this.log('fetched heroes')),
         catchError(this.handleError<Movie[]>('getMovies', []))
       );
   }
 
+  getMovie(id: number): Observable<Movie> {
+    const params = new HttpParams().set('id', String(id));
+    return this.http.get<Movie>(this.moviePath, {params})
+      .pipe(
+        tap(_ => this.log(`fetched movie id=${id}`)),
+        catchError(this.handleError<Movie>(`getMovie id=${id}`))
+      );
+  }
 }

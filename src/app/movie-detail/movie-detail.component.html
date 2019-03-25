@@ -1,0 +1,9 @@
+<div *ngIf="movie">
+  <h3>{{movie.title}} {{movie.year}}</h3>
+  <div *ngIf="movie.director">导演：{{movie.director}}</div>
+  <div *ngIf="movie.mainActor">演员：{{movie.mainActor}}</div>
+  <div *ngIf="movie.area">地区：{{movie.area}}</div>
+  <div *ngIf="movie.summary">简介：{{movie.summary}}</div>
+
+  <button (click)="goBack()">go back</button>
+</div>

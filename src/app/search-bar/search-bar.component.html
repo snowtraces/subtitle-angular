@@ -5,7 +5,7 @@
 <button type="button" (click)="search(searchBox.value)" >搜索</button>
 <ul class="search-result">
   <li *ngFor="let movie of movies$ | async" >
-    <a routerLink="/detail/{{movie.id}}">
+    <a routerLink="/movie/{{movie.id}}">
       {{movie.title}}
       <span *ngIf="movie.year != 0">
         {{movie.year}}

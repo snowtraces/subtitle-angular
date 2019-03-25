@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MoviesComponent } from './movies/movies.component';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MoviesComponent } from './movies/movies.component';
     HeaderComponent,
     SearchBarComponent,
     MessagesComponent,
-    MoviesComponent
+    MoviesComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,
