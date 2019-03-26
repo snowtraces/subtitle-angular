@@ -11,6 +11,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
     SearchBarComponent,
     MessagesComponent,
     MoviesComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
