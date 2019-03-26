@@ -20,7 +20,7 @@ export class MovieService {
   }
 
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.messageService.add(`MovieService: ${message}`);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

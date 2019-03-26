@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FileService} from '../service/file.service';
 
 @Component({
@@ -7,9 +7,11 @@ import {FileService} from '../service/file.service';
   styleUrls: ['./file-upload.component.css']
 })
 export class FileUploadComponent implements OnInit {
-  fileToUpload: File = null;
+  private fileToUpload: File = null;
+  @Output() sendResult: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private fileServcie: FileService) { }
+  constructor(private fileService: FileService) {
+  }
 
   ngOnInit() {
   }
@@ -19,13 +21,13 @@ export class FileUploadComponent implements OnInit {
   }
 
   uploadFileToActivity() {
-    this.fileServcie.postFile(this.fileToUpload).subscribe(data => {
-      // do something, if upload success
-    }, error => {
-      console.log(error);
-    });
+    this.fileService.postFile(this.fileToUpload).subscribe(
+      data => {
+        this.sendResult.emit(data);
+      }, error => {
+        console.log(error);
+      });
   }
-
 
 
 }
