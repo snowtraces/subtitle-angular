@@ -19,7 +19,24 @@ export class SubEditorComponent implements OnInit {
   }
 
   getData(result: SRTSuntitleUnit[]) {
-    this.result = result;
+    if (result[0].start) {
+      this.result = result;
+    }
+  }
+
+  transTime2String(time: number): string {
+    const mill = ~~(time % 1000);
+    const sec = ~~((time / 1000) % 60);
+    const min = ~~((time / 1000 / 60) % 60);
+    const hour = ~~(time / 1000 / 60 / 60);
+
+    return this.lengthFix(hour, 2) + ':' + this.lengthFix(min, 2) + ':'
+      + this.lengthFix(sec, 2) + ',' + this.lengthFix(mill, 3);
+  }
+
+  lengthFix(inNumber: number, length: number): string {
+    const inString = String(inNumber);
+    return inString.padStart(length, '0');
   }
 
 }

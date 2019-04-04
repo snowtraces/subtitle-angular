@@ -1,8 +1,8 @@
 <app-file-upload (sendResult)="getData($event)"></app-file-upload>
-<div>
-  <div *ngFor="let unit of result" style="margin-bottom: 10px">
+<div class="sub-editor">
+  <div *ngFor="let unit of result">
     <div>{{unit.number}}</div>
-    <div>{{unit.start}} -> {{unit.end}}</div>
+    <div>{{transTime2String(unit.start)}} --> {{transTime2String(unit.end)}}</div>
     <div>{{unit.text}}</div>
   </div>
 </div>
