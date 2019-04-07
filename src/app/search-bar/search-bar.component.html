@@ -1,6 +1,8 @@
 <form class="search-form">
   <input #searchBox type="text"
          (input)="searchTerm(searchBox.value)"
+         (compositionend)="updateInputStatus(true, searchBox.value)"
+         (compositionstart)="updateInputStatus(false, searchBox.value)"
          (blur)="searchTerm('')"
          placeholder="电影、电视剧"
   />

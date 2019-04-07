@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
 export class SearchBarComponent implements OnInit {
   movies$: Observable<Movie[]>;
   private searchTerms = new Subject<string>();
+  private status = true;
 
   constructor(
     private movieService: MovieService,
@@ -24,7 +25,17 @@ export class SearchBarComponent implements OnInit {
    * 关键词提示
    */
   searchTerm(term: string): void {
-    this.searchTerms.next(term.trim());
+    console.log(this.status)
+    if (this.status) {
+      this.searchTerms.next(term.trim());
+    }
+  }
+
+  updateInputStatus(status: boolean, term: string): void {
+    this.status = status;
+    if (this.status) { // compositionend 事件
+      this.searchTerms.next(term.trim());
+    }
   }
 
   /**
