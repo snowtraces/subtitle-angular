@@ -3,15 +3,29 @@
 body {
   font: 1em/150% Arial, Helvetica, sans-serif;
 }
+
+blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul {
+  margin: 0;
+  padding: 0
+}
+
 a {
   color: #669;
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
 }
+
 h1 {
   font: bold 36px/100% Arial, Helvetica, sans-serif;
+}
+
+input, button {
+  text-decoration: none;
+  outline: none;
+  border: none;
 }
 
 /************************************************************************************
@@ -22,12 +36,15 @@ STRUCTURE
   width: 960px;
   margin: 20px auto;
 }
+
 #header {
 }
+
 #content {
   width: auto;
   float: none;
 }
+
 #footer {
   clear: both;
 }
@@ -55,6 +72,7 @@ MEDIA QUERIES
   #header {
     height: auto;
   }
+
   h1 {
     font-size: 24px;
   }
@@ -64,9 +82,11 @@ MEDIA QUERIES
 #content {
   background: #f8f8f8;
 }
+
 #header, #content, #sidebar {
   margin-bottom: 5px;
 }
+
 #pagewrap, #header, #content, #sidebar, #footer {
   border: solid 1px #ccc;
 }

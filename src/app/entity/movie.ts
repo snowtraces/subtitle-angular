@@ -1,8 +1,9 @@
 export class Movie {
   id: number;
   title: string;
-  director: string;
-  mainActor: string;
+  originalTitle: string;
+  directors: string;
+  casts: string;
   area: string;
   summary: string;
   year: number;

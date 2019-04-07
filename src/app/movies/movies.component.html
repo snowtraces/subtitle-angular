@@ -1,7 +1,9 @@
 <ul class="heroes">
   <li *ngFor="let movie of movies">
     <a routerLink="/movie/{{movie.id}}">
-       {{movie.title}}
+      {{movie.title}} <span
+      *ngIf="movie.originalTitle != movie.title">{{movie.originalTitle}}</span> <span
+      *ngIf="movie.year != 0">({{movie.year}})</span>
     </a>
   </li>
 </ul>

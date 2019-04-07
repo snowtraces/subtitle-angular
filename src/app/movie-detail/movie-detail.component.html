@@ -1,7 +1,7 @@
 <div *ngIf="movie">
-  <h3>{{movie.title}} {{movie.year}}</h3>
-  <div *ngIf="movie.director">导演：{{movie.director}}</div>
-  <div *ngIf="movie.mainActor">演员：{{movie.mainActor}}</div>
+  <h3>{{movie.title}} {{movie.originalTitle}} {{movie.year}}</h3>
+  <div *ngIf="movie.directors">导演：{{movie.directors}}</div>
+  <div *ngIf="movie.casts">演员：{{movie.casts}}</div>
   <div *ngIf="movie.area">地区：{{movie.area}}</div>
   <div *ngIf="movie.summary">简介：{{movie.summary}}</div>
 

@@ -1,15 +1,20 @@
-<input #searchBox type="search"
-       (input)="searchTerm(searchBox.value)"
-       (blur)="searchTerm('')"
-/>
-<button type="button" (click)="search(searchBox.value)" >搜索</button>
-<ul class="search-result">
-  <li *ngFor="let movie of movies$ | async" >
-    <a routerLink="/movie/{{movie.id}}">
-      {{movie.title}}
-      <span *ngIf="movie.year != 0">
-        {{movie.year}}
-      </span>
-    </a>
-  </li>
-</ul>
+<form class="search-form">
+  <input #searchBox type="text"
+         (input)="searchTerm(searchBox.value)"
+         (blur)="searchTerm('')"
+         placeholder="电影、电视剧"
+  />
+
+  <button type="button" (click)="search(searchBox.value)">搜索</button>
+  <ul class="search-result">
+    <li *ngFor="let movie of movies$ | async">
+      <a routerLink="/movie/{{movie.id}}">
+        {{movie.title}}  <span
+        *ngIf="movie.originalTitle != movie.title">{{movie.originalTitle}}</span> <span
+        *ngIf="movie.year != 0">({{movie.year}})</span>
+      </a>
+    </li>
+  </ul>
+</form>
+
+
