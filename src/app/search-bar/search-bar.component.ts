@@ -25,7 +25,6 @@ export class SearchBarComponent implements OnInit {
    * 关键词提示
    */
   searchTerm(term: string): void {
-    console.log(this.status)
     if (this.status) {
       this.searchTerms.next(term.trim());
     }

@@ -1,5 +1,34 @@
+#header {
+  position: relative;
+}
+h2 {
+  display: block;
+  width: 100px;
+  padding-left: 20px;
+  height: 64px;
+  line-height: 64px;
+  font-size: 18px;
+  color: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+nav {
+  display: block;
+  margin-left: 120px;
+  height: 64px;
+  line-height: 64px;
+}
+
 nav > a {
-  padding: 3px 5px;
-  margin-right: 5px;
-  background: aliceblue;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  padding: 0 1rem;
+}
+
+nav > a:hover {
+  background-color: #35393e;
 }

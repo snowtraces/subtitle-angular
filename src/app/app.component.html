@@ -1,14 +1,10 @@
-<div id="pagewrap">
+<app-header></app-header>
 
-  <app-header></app-header>
+<div id="content">
+  <router-outlet></router-outlet>
+</div>
 
-  <div id="content">
-    <router-outlet></router-outlet>
-  </div>
-
-  <div id="footer">
-    <h2>Footer</h2>
-    <app-messages></app-messages>
-  </div>
-
+<div id="footer">
+  <h2>Footer</h2>
+  <app-messages></app-messages>
 </div>

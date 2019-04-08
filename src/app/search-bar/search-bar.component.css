@@ -1,11 +1,14 @@
 .search-form {
-  max-width:500px;
+  width:500px;
   height: 36px;
-  margin: 0 auto 10px;
+  margin: 0 auto;
   border: 1px solid #1A73E8;
   border-width: 1px 0 1px 1px;
   font-size: 14px;
-  position: relative;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .search-form input {
@@ -14,7 +17,6 @@
   height: 100%;
   float: left;
   line-height: 36px;
-
 }
 
 .search-form button{

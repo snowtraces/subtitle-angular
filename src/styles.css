@@ -15,7 +15,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 h1 {
@@ -27,22 +27,41 @@ input, button {
   outline: none;
   border: none;
 }
+.w {
+  display: block;
+  max-width: 800px;
+  margin: 0 auto;
+}
 
 /************************************************************************************
 STRUCTURE
 *************************************************************************************/
-#pagewrap {
-  padding: 5px;
-  width: 960px;
-  margin: 20px auto;
+app-header {
+  display: block;
+  width: 100%;
+  height: 64px;
+  position: relative;
+  background-color: #24292e;
+  margin-bottom: 1rem;
+  z-index: 2;
+  opacity: .8;
+}
+
+app-home {
+  display: block;
+  height: 67vw;
+  max-height: 100vh;
+  width: calc(100vw - (100vw - 100%));
+  position: relative;
+  margin-top: calc(-64px - 1rem);
+  left: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  background: #eee url('./assets/images/b.png') center fixed;
+  background-size: cover;
 }
 
 #header {
-}
-
-#content {
-  width: auto;
-  float: none;
 }
 
 #footer {
@@ -55,9 +74,7 @@ MEDIA QUERIES
 /* for 980px or less */
 @media screen and (max-width: 980px) {
 
-  #pagewrap {
-    width: 94%;
-  }
+
 }
 
 /* for 700px or less */
@@ -76,17 +93,4 @@ MEDIA QUERIES
   h1 {
     font-size: 24px;
   }
-}
-
-/* border & guideline (you can ignore these) */
-#content {
-  background: #f8f8f8;
-}
-
-#header, #content, #sidebar {
-  margin-bottom: 5px;
-}
-
-#pagewrap, #header, #content, #sidebar, #footer {
-  border: solid 1px #ccc;
 }
