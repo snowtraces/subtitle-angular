@@ -9,6 +9,10 @@ blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr
   padding: 0
 }
 
+ul {
+  list-style-type: none;
+}
+
 a {
   color: #669;
   text-decoration: none;
@@ -29,7 +33,7 @@ input, button {
 }
 .w {
   display: block;
-  max-width: 800px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
@@ -47,7 +51,7 @@ app-header {
   opacity: .8;
 }
 
-app-home {
+app-search-bar {
   display: block;
   height: 67vw;
   max-height: 100vh;
@@ -57,10 +61,9 @@ app-home {
   left: 0;
   z-index: 1;
   box-sizing: border-box;
-  background: #eee url('./assets/images/b.png') center fixed;
+  background: #eee url('./assets/images/timg.jpg') center fixed;
   background-size: cover;
 }
-
 #header {
 }
 

@@ -12,6 +12,7 @@ export class MovieService {
   private movieSearch = 'api/searchMovies';
   private movieList = 'api/listMovies';
   private moviePath = 'api/movie';
+  private topMoviePath = 'api/listTopMovies';
 
   constructor(
     private http: HttpClient,
@@ -68,6 +69,14 @@ export class MovieService {
       .pipe(
         tap(_ => this.log(`fetched movie id=${id}`)),
         catchError(this.handleError<Movie>(`getMovie id=${id}`))
+      );
+  }
+
+  getTopMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.topMoviePath)
+      .pipe(
+        tap(_ => this.log(`fetch top movies`)),
+        catchError(this.handleError<Movie[]>(`getTopMovies`))
       );
   }
 }

@@ -4,6 +4,8 @@ export class Movie {
   originalTitle: string;
   directors: string;
   casts: string;
+  imgId: string;
+  rating: number;
   area: string;
   summary: string;
   year: number;

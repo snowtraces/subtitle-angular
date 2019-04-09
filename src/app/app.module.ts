@@ -12,6 +12,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { TopMoviesComponent } from './top-movies/top-movies.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     MessagesComponent,
     MoviesComponent,
     MovieDetailComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    TopMoviesComponent
   ],
   imports: [
     BrowserModule,
