@@ -1,40 +1,45 @@
 .search-form {
-  width:500px;
-  height: 36px;
+  width: 500px;
+  height: 42px;
   margin: 0 auto;
-  border: 1px solid #1A73E8;
-  border-width: 1px 0 1px 1px;
+  border: 1px solid #dfe1e5;
   font-size: 14px;
   position: absolute;
   top: 45%;
   left: 50%;
   transform: translateX(-50%);
+  border-radius: 22px;
+  background-color: #ffffff;
+}
+
+.search-form:hover {
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28)
 }
 
 .search-form input {
-  width: calc(100% - 60px);
-  padding-left: 10px;
+  width: calc(100% - 68px);
+  margin-left: 21px;
   height: 100%;
   float: left;
-  line-height: 36px;
+  line-height: 42px;
 }
 
-.search-form button{
-  width: 50px;
+.search-form button {
   height: 100%;
-  background: #1A73E8;
-  color:#fff;
+  background: #fff;
   position: absolute;
-  right: 0;
+  right: 21px;
   top: 0;
   line-height: 36px;
+  cursor: pointer;
+  color: #1A73E8;
 }
+
 .search-result li {
-  border-bottom: 1px solid gray;
-  border-left: 1px solid gray;
-  border-right: 1px solid gray;
+  border-left: 1px solid #dfe1e5;
+  border-right: 1px solid #dfe1e5;
   width: 100%;
-  padding: 5px;
+  padding: 5px 21px;
   box-sizing: border-box;
   background-color: white;
   cursor: pointer;
@@ -43,7 +48,42 @@
 }
 
 .search-result li:hover {
-  background-color: #607D8B;
+  background-color: #eeeeee;
+}
+
+.search-result li:last-child {
+  border-bottom: 1px solid #dfe1e5;
+  border-radius: 0 0 21px 21px;
+}
+
+.search-result li:nth-child(1) {
+  border-top: 1px solid #ddd;
+}
+
+.search-result li:nth-child(1):before {
+  content: ' ';
+  width: 21px;
+  height: 21px;
+  border-left: 1px solid #dfe1e5;
+  background-color: #ffffff;
+  position: absolute;
+  left: 0;
+  top: -21px;
+  z-index: -1;
+  box-shadow: -1px 4px 4px -1px rgba(32, 33, 36, 0.28)
+}
+
+.search-result li:nth-child(1):after {
+  content: ' ';
+  width: 21px;
+  height: 21px;
+  border-right: 1px solid #dfe1e5;
+  background-color: #ffffff;
+  position: absolute;
+  right: 0;
+  top: -21px;
+  z-index: -1;
+  box-shadow: 1px 4px 4px -1px rgba(32, 33, 36, 0.28)
 }
 
 .search-result li a {
@@ -53,15 +93,22 @@
 }
 
 .search-result li a:hover {
-  color: white;
+  color: #777;
 }
+
 .search-result li a:active {
-  color: white;
+  color: #666;
 }
 
 ul.search-result {
   margin-left: -1px;
   position: absolute;
-  top: 38px;
-  width: calc(100% + 1px);
+  top: 42px;
+  width: calc(100% + 2px);
+  border-radius: 0 0 21px 21px;
+  box-shadow: 0 4px 6px 0 rgba(32, 33, 36, 0.28)
+}
+
+.search-result:hover .search-form, input:focus .search-form {
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28)
 }

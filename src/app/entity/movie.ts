@@ -9,4 +9,5 @@ export class Movie {
   area: string;
   summary: string;
   year: number;
+  genres: string;
 }

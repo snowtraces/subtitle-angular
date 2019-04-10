@@ -1,6 +1,7 @@
-<form class="search-form">
+<div class="search-form">
   <input #searchBox type="text"
          (input)="searchTerm(searchBox.value)"
+         (keyup.enter)="search(searchBox.value)"
          (compositionend)="updateInputStatus(true, searchBox.value)"
          (compositionstart)="updateInputStatus(false, searchBox.value)"
          (blur)="searchTerm('')"
@@ -17,6 +18,6 @@
       </a>
     </li>
   </ul>
-</form>
+</div>
 
 

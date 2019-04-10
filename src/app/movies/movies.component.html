@@ -1,9 +1,26 @@
-<ul class="movies">
-  <li *ngFor="let movie of movies">
-    <a routerLink="/movie/{{movie.id}}">
-      {{movie.title}} <span
-      *ngIf="movie.originalTitle != movie.title">{{movie.originalTitle}}</span> <span
-      *ngIf="movie.year != 0">({{movie.year}})</span>
-    </a>
-  </li>
-</ul>
+<div class="w">
+  <ul class="movies">
+    <li *ngFor="let movie of movies" class="list-item">
+      <div class="item-left">
+        <a routerLink="/movie/{{movie.id}}" title="{{movie.title}}" class="item-img">
+          <img src="./assets/poster/{{movie.imgId}}.webp" onerror="this.src='./assets/poster/movie_default_small.webp'">
+        </a>
+      </div>
+      <div class="item-right">
+        <div class="item-title">
+          <a routerLink="/movie/{{movie.id}}">
+            {{movie.title}} <span
+            *ngIf="movie.originalTitle != movie.title">{{movie.originalTitle}}</span> <span
+            *ngIf="movie.year != 0">({{movie.year}})</span>
+          </a>
+        </div>
+        <div class="detail">
+          <p class="rating"><span class="rating-bot">★★★★★</span> <span class="rating-top" [ngStyle]="{'width.em': ratingCalc(movie)}" >★★★★★</span> <span class="rating-text" *ngIf="movie.rating">{{movie.rating / 100 | number: '1.1-1'}}</span></p>
+          <p>类别：{{movie.genres}}</p>
+          <p>导演：{{movie.directors}}</p>
+          <p>演员：{{movie.casts}}</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

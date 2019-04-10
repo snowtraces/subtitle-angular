@@ -61,14 +61,21 @@ app-search-bar {
   left: 0;
   z-index: 1;
   box-sizing: border-box;
-  background: #eee url('./assets/images/timg.jpg') center fixed;
+  background: #eee url('./assets/images/b.png') center fixed;
   background-size: cover;
 }
 #header {
 }
 
+#message{
+  margin-top: 2rem;
+  background-color: #ccc;
+}
+
 #footer {
   clear: both;
+  background-color: #607D8B;
+  margin-top: 2rem;
 }
 
 /************************************************************************************
