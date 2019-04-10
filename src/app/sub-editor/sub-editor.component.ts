@@ -25,10 +25,10 @@ export class SubEditorComponent implements OnInit {
   }
 
   transTime2String(time: number): string {
-    const mill = ~~(time % 1000);
-    const sec = ~~((time / 1000) % 60);
-    const min = ~~((time / 1000 / 60) % 60);
-    const hour = ~~(time / 1000 / 60 / 60);
+    const mill = Math.round(time % 1000);
+    const sec = Math.round((time / 1000) % 60);
+    const min = Math.round((time / 1000 / 60) % 60);
+    const hour = Math.round(time / 1000 / 60 / 60);
 
     return this.lengthFix(hour, 2) + ':' + this.lengthFix(min, 2) + ':'
       + this.lengthFix(sec, 2) + ',' + this.lengthFix(mill, 3);

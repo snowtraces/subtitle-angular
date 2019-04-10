@@ -1,0 +1,27 @@
+.movie-section {
+  background: #f2f2f2;
+}
+
+.movie-info {
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.info-left {
+  overflow: hidden;
+}
+
+.info-poster {
+  width: 135px;
+  height: 200px;
+  overflow: hidden;
+  float: left;
+}
+
+.info-poster img {
+  height: 200px;
+}
+
+.info-base {
+  margin-left: 145px;
+}
