@@ -1,7 +1,7 @@
 <ul class="movies w">
   <li *ngFor="let movie of movies" class="top-item">
     <a routerLink="/movie/{{movie.id}}" title="{{movie.title}}" class="top-img">
-      <img src="./assets/poster/{{movie.imgId}}.webp" onerror="this.src='./assets/poster/movie_default_small.webp'">
+      <img src="./assets/poster/{{utils.idPath(movie.id,movie.imgId)}}/{{movie.imgId}}.webp" onerror="this.src='./assets/poster/default/movie_default_small.webp'">
     </a>
     <a routerLink="/movie/{{movie.id}}" class="top-title">
       {{movie.title}} <span class="top-rating" *ngIf="movie.rating">{{movie.rating / 100 | number: '1.1-1'}}</span>

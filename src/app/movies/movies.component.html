@@ -3,7 +3,7 @@
     <li *ngFor="let movie of movies" class="list-item">
       <div class="item-left">
         <a routerLink="/movie/{{movie.id}}" title="{{movie.title}}" class="item-img">
-          <img src="./assets/poster/{{movie.imgId}}.webp" onerror="this.src='./assets/poster/movie_default_small.webp'">
+          <img src="./assets/poster/{{utils.idPath(movie.id, movie.imgId)}}/{{movie.imgId}}.webp" onerror="this.src='./assets/poster/default/movie_default_small.webp'">
         </a>
       </div>
       <div class="item-right">

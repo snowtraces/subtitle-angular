@@ -6,7 +6,6 @@
 
 .top-item {
   width: 110px;
-  float: left;
   flex: 1;
   text-align: center;
 }
@@ -15,7 +14,7 @@
   display: block;
   width: 110px;
   height: 154px;
-  margin-bottom: 5px;
+  margin: 0 auto 5px auto;
   overflow: hidden;
   background-color: #eeeeee;
 }
@@ -31,6 +30,7 @@
   width: 110px;
   line-height: 18px;
   color: #1A73E8;
+  margin: 0 auto;
 }
 
 .top-rating {

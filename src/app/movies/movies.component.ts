@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Movie} from '../entity/movie';
 import {MovieService} from '../service/movie.service';
 import {ActivatedRoute} from '@angular/router';
+import {UtilsService} from '../service/utils.service';
 
 @Component({
   selector: 'app-movies',
@@ -19,7 +20,9 @@ export class MoviesComponent implements OnInit {
 
   constructor(
     private movieService: MovieService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private utils: UtilsService
+  ) {
   }
 
   ngOnInit() {
@@ -30,4 +33,5 @@ export class MoviesComponent implements OnInit {
   ratingCalc(movie: Movie): number {
     return movie.rating / 200 || 0;
   }
+
 }

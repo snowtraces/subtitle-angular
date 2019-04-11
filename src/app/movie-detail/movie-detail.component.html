@@ -6,8 +6,8 @@
         *ngIf="movie.year != 0"> ({{movie.year}})</span></h2>
       <div class="info-left">
         <div class="info-poster">
-          <img src="./assets/poster/{{movie.imgId}}.webp"
-               onerror="this.src='./assets/poster/movie_default_small.webp'"
+          <img src="./assets/poster/{{utils.idPath(movie.id,movie.imgId)}}/{{movie.imgId}}.webp"
+               onerror="this.src='./assets/poster/default/movie_default_small.webp'"
                (load)="setMainColor()"
           >
           <div class="douban-link">

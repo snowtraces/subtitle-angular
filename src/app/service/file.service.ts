@@ -40,6 +40,6 @@ export class FileService {
         , reportProgress: true}).pipe(
       tap(_ => this.log(`upload file: ${fileToUpload.name}`)),
       catchError(this.handleError<any>(`upload file: ${fileToUpload.name}`, []))
-    );;
+    );
   }
 }
