@@ -1,6 +1,9 @@
 <div class="movie-detail">
   <div class="movie-section">
     <div *ngIf="movie" class="w movie-info" >
+      <h2>{{movie.title}} <span
+        *ngIf="movie.originalTitle != movie.title">{{movie.originalTitle}}</span> <span
+        *ngIf="movie.year != 0"> ({{movie.year}})</span></h2>
       <div class="info-left">
         <div class="info-poster">
           <img src="./assets/poster/{{movie.imgId}}.webp"
@@ -9,13 +12,11 @@
           >
         </div>
         <div class="info-base">
-          <h3>{{movie.title}} <span
-            *ngIf="movie.originalTitle != movie.title">{{movie.originalTitle}}</span> <span
-            *ngIf="movie.year != 0">({{movie.year}})</span></h3>
           <div *ngIf="movie.genres">类别：{{movie.genres}}</div>
           <div *ngIf="movie.directors">导演：{{movie.directors}}</div>
+          <div *ngIf="movie.countries">地区：{{movie.countries}}</div>
           <div *ngIf="movie.casts">演员：{{movie.casts}}</div>
-          <div *ngIf="movie.area">地区：{{movie.area}}</div>
+          <div *ngIf="movie.aka">别名：{{movie.aka}}</div>
           <div *ngIf="movie.summary">简介：{{movie.summary}}</div>
         </div>
 

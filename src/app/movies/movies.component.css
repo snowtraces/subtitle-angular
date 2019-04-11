@@ -5,7 +5,7 @@
 .list-item {
   position: relative;
   clear: both;
-  height: 96px;
+  height: 91px;
   overflow: hidden;
   margin-bottom: 1rem;
 }
@@ -25,14 +25,14 @@
 .item-img {
   display: block;
   width: 65px;
-  height: 96px;
+  height: 91px;
   margin-bottom: 5px;
   overflow: hidden;
   background-color: #eeeeee;
 }
 
 .item-img img {
-  height: 96px;
+  height: 91px;
 }
 
 .item-title {

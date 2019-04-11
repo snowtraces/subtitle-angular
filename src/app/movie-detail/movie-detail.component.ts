@@ -65,22 +65,29 @@ export class MovieDetailComponent implements OnInit {
       rgbArray[index].count++;
     }
     rgbArray.sort((a, b) => b.count - a.count);
+    const color = [];
+    let numCount = 0;
     for (let k = 0; k < 8; k++) {
       const r = Math.round(rgbArray[k].r / rgbArray[k].count);
       const b = Math.round(rgbArray[k].b / rgbArray[k].count);
       const g = Math.round(rgbArray[k].g / rgbArray[k].count);
-      if (r <= 32 && g <= 32 && b <= 32) {
+      if (k < 2 && r <= 32 && g <= 32 && b <= 32) {
         continue;
       }
-      if (r >= 224 && g >= 224 && b >= 224) {
+      if (k < 2 && r >= 224 && g >= 224 && b >= 224) {
         continue;
       }
-      if (Math.abs(r - g) < 32 && Math.abs(r - b) < 32) {
+      if (k < 2 && Math.abs(r - g) < 32 && Math.abs(r - b) < 32) {
         continue;
       }
       const mainColor = 'rgba(' + r + ',' + g + ',' + b + ', 0.15)';
-      document.querySelector('.movie-detail').querySelector('div').style.backgroundColor = mainColor;
-      break;
+      color.push(mainColor);
+      numCount++;
+      if (numCount === 2) {
+        break;
+      }
     }
+    const gradient = 'linear-gradient(60deg,' + color[0] + ' 32%, ' + color[1] + ')';
+    document.querySelector('.movie-detail').querySelector('div').style.backgroundImage = gradient;
   }
 }

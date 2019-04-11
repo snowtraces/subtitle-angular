@@ -6,8 +6,12 @@ export class Movie {
   casts: string;
   imgId: string;
   rating: number;
-  area: string;
+  aka: string;
+  countries: string;
   summary: string;
   year: number;
   genres: string;
+  seasonsCount: number;
+  episodesCount: string;
+  currentSeason: string;
 }

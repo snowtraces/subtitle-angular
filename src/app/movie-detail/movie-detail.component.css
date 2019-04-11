@@ -1,5 +1,11 @@
 .movie-section {
-  background: #f2f2f2;
+  background: rgba(200, 200, 200, 0.15);
+  transition: .1s;
+  transition-timing-function: ease-in;
+}
+
+h2 {
+  margin-bottom: 1rem;
 }
 
 .movie-info {
@@ -13,15 +19,16 @@
 
 .info-poster {
   width: 135px;
-  height: 200px;
   overflow: hidden;
   float: left;
 }
 
 .info-poster img {
-  height: 200px;
+  width: 135px;
 }
 
 .info-base {
   margin-left: 145px;
+  font-size: 13px;
+  line-height: 22px;
 }
