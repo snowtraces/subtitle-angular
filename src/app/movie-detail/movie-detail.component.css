@@ -28,7 +28,55 @@ h2 {
 }
 
 .info-base {
-  margin-left: 145px;
+  margin-left: 150px;
   font-size: 13px;
   line-height: 22px;
 }
+
+.douban-link {
+  text-align: center;
+}
+
+.douban-link > div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.douban-logo {
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+  background: #4f946e;
+  line-height: 16px;
+  text-align: center;
+  border-radius: 2px;
+  margin-right: 5px;
+}
+.douban-logo a {
+  color: #fff;
+}
+
+.rating {
+  font-family: cursive, monospace;
+  position: relative;
+  font-size: 14px;
+}
+
+.rating .rating-text {
+  margin-left: 5px;
+  color: #e09015;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.rating .rating-bot {
+  color: #cccccc;
+}
+
+.rating .rating-top {
+  color: #e09015;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+

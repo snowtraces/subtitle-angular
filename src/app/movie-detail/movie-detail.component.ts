@@ -28,6 +28,10 @@ export class MovieDetailComponent implements OnInit {
       .subscribe(movie => this.movie = movie);
   }
 
+  ratingCalc(movie: Movie): number {
+    return movie.rating / 200 || 0;
+  }
+
   setMainColor(): void {
     function rgb(r, g, b, count) {
       this.r = r;

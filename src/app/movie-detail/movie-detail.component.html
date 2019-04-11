@@ -7,9 +7,17 @@
       <div class="info-left">
         <div class="info-poster">
           <img src="./assets/poster/{{movie.imgId}}.webp"
-               (error)="this.src='./assets/poster/movie_default_small.webp'"
+               onerror="this.src='./assets/poster/movie_default_small.webp'"
                (load)="setMainColor()"
           >
+          <div class="douban-link">
+            <div class="douban-logo"><a href="https://movie.douban.com/subject/{{movie.id}}/" target="_blank">豆</a></div>
+            <div class="rating">
+              <span class="rating-bot">★★★★★</span>
+              <span class="rating-top" [ngStyle]="{'width.em': ratingCalc(movie)}" >★★★★★</span>
+              <span class="rating-text" *ngIf="movie.rating">{{movie.rating / 100 | number: '1.1-1'}}</span>
+            </div>
+          </div>
         </div>
         <div class="info-base">
           <div *ngIf="movie.genres">类别：{{movie.genres}}</div>
