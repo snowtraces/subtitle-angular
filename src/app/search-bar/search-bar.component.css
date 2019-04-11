@@ -10,6 +10,7 @@
   transform: translateX(-50%);
   border-radius: 22px;
   background-color: #ffffff;
+  opacity: .85;
 }
 
 .search-form:hover {
@@ -51,7 +52,7 @@
 }
 
 .search-result li:hover {
-  background-color: #eeeeee;
+  background-color: #dddddd;
 }
 
 .search-result li:last-child {
@@ -89,17 +90,17 @@
 }
 
 .search-result li a {
-  color: #888;
+  color: #666;
   display: block;
   text-decoration: none;
 }
 
 .search-result li a:hover {
-  color: #777;
+  color: #555;
 }
 
 .search-result li a:active {
-  color: #666;
+  color: #444;
 }
 
 ul.search-result {

@@ -14,7 +14,6 @@ export class SearchBarComponent implements OnInit {
   movies$: Observable<Movie[]>;
   private searchTerms = new Subject<string>();
   private status = true;
-  hasResult = false;
 
   constructor(
     private movieService: MovieService,

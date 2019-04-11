@@ -50,19 +50,6 @@ app-header {
   opacity: .8;
 }
 
-app-search-bar {
-  display: block;
-  height: 67vw;
-  max-height: 100vh;
-  width: calc(100vw - (100vw - 100%));
-  position: relative;
-  margin-top: -64px;
-  left: 0;
-  z-index: 1;
-  box-sizing: border-box;
-  background: #eee url('./assets/images/01.jpg') center fixed;
-  background-size: cover;
-}
 #header {
 }
 
