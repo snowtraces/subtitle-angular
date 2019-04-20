@@ -1,6 +1,6 @@
 <div class="movie-detail">
   <div class="movie-section">
-    <div *ngIf="movie" class="w movie-info" >
+    <div *ngIf="movie" class="w movie-info">
       <h2>{{movie.title}} <span
         *ngIf="movie.originalTitle != movie.title">{{movie.originalTitle}}</span> <span
         *ngIf="movie.year != 0"> ({{movie.year}})</span></h2>
@@ -11,10 +11,11 @@
                (load)="setMainColor()"
           >
           <div class="douban-link">
-            <div class="douban-logo"><a href="https://movie.douban.com/subject/{{movie.id}}/" target="_blank">豆</a></div>
+            <div class="douban-logo"><a href="https://movie.douban.com/subject/{{movie.id}}/" target="_blank">豆</a>
+            </div>
             <div class="rating">
               <span class="rating-bot">★★★★★</span>
-              <span class="rating-top" [ngStyle]="{'width.em': ratingCalc(movie)}" >★★★★★</span>
+              <span class="rating-top" [ngStyle]="{'width.em': ratingCalc(movie)}">★★★★★</span>
               <span class="rating-text" *ngIf="movie.rating">{{movie.rating / 100 | number: '1.1-1'}}</span>
             </div>
           </div>
@@ -34,6 +35,27 @@
       </div>
 
     </div>
+  </div>
+
+  <div class="subtitle-section">
+    <div *ngIf="subtitles" class="w subtitle-list">
+      <div *ngFor="let sub of subtitles" class="sub-item">
+        <div class="sub-title">{{sub.title ? sub.title : sub.version}}</div>
+        <div class="sub-tag">
+          <span class="se-info" *ngIf="sub.currentSeason">S{{sub.currentSeason}}E{{sub.currentEpisode}}</span>
+          <span *ngFor="let lang of normalizeLang(sub.language)"
+                class="lang-item lang-{{lang.code}}">{{lang.name}}</span>
+        </div>
+        <a class="download-btn" download="{{sub.fileName}}"
+           href="./assets/subtitles/{{utils.idPathBasic(movie.id)}}/{{sub.fileName}}" title="点击下载字幕">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
   </div>
 
 

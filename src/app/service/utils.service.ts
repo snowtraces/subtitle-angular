@@ -11,6 +11,9 @@ export class UtilsService {
     if (!imgId || imgId.includes('default')) {
       return 'default';
     }
+    return this.idPathBasic(id);
+  }
+  idPathBasic(id: string): string {
     const len = 1;
     const steps = 5;
     const path = [];

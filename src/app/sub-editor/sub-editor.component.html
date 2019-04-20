@@ -1,8 +1,15 @@
-<app-file-upload (sendResult)="getData($event)"></app-file-upload>
-<div class="sub-editor">
-  <div *ngFor="let unit of result">
-    <div>{{unit.number}}</div>
-    <div>{{transTime2String(unit.start)}} --> {{transTime2String(unit.end)}}</div>
-    <div>{{unit.text}}</div>
+<div id="editor-container">
+  <div class="w sub-editor">
+    <div class="top-bar">
+      <app-file-upload (sendResult)="getData($event)"></app-file-upload>
+      <button class="edit-btn">调轴</button>
+    </div>
+    <div class="sub-detail" *ngIf="result">
+      <div *ngFor="let unit of result">
+        <div>{{unit.number}}</div>
+        <div>{{transTime2String(unit.start)}} --> {{transTime2String(unit.end)}}</div>
+        <div>{{unit.text}}</div>
+      </div>
+    </div>
   </div>
 </div>

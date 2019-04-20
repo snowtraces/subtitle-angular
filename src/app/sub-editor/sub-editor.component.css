@@ -1,10 +1,40 @@
+#editor-container {
+  background-color: #eeeeee;
+}
 .sub-editor {
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+.sub-detail {
+  background: #ffffff;
+  padding: 1rem;
+  margin-top: .5rem;
+  border: 1px solid #e2e2e2;
   font-size: 13px;
   font-family: sans-serif;
-  max-height: 500px;
+  max-height: 75vh;
   overflow: auto;
   line-height: 1.5;
 }
-.sub-editor > div{
+.sub-detail > div{
   margin-bottom: 13px;
+}
+
+.top-bar > * {
+  display: inline-block;
+}
+
+app-file-upload {
+  display: block;
+  width: 500px;
+}
+
+.edit-btn {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 15px;
+  background-color: #4285f4;
+  color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
 }

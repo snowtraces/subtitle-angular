@@ -26,14 +26,8 @@ export class MovieService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
+      console.error(error);
       this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
@@ -46,7 +40,7 @@ export class MovieService {
       return of([]);
     }
     return this.http.get<Movie[]>(`${this.movieSearch}?title=${term}`).pipe(
-      tap(_ => this.log(`found movies matching "${term}"`)),
+      tap(() => this.log(`found movies matching "${term}"`)),
       catchError(this.handleError<Movie[]>('searchHeroes', []))
     );
   }
@@ -58,7 +52,7 @@ export class MovieService {
     const params = new HttpParams().set('title', title);
     return this.http.get<Movie[]>(this.movieList, {params})
       .pipe(
-        tap(_ => this.log('fetched heroes')),
+        tap(() => this.log('fetched heroes')),
         catchError(this.handleError<Movie[]>('getMovies', []))
       );
   }
@@ -67,7 +61,7 @@ export class MovieService {
     const params = new HttpParams().set('id', String(id));
     return this.http.get<Movie>(this.moviePath, {params})
       .pipe(
-        tap(_ => this.log(`fetched movie id=${id}`)),
+        tap(() => this.log(`fetched movie id=${id}`)),
         catchError(this.handleError<Movie>(`getMovie id=${id}`))
       );
   }
@@ -75,7 +69,7 @@ export class MovieService {
   getTopMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.topMoviePath)
       .pipe(
-        tap(_ => this.log(`fetch top movies`)),
+        tap(() => this.log(`fetch top movies`)),
         catchError(this.handleError<Movie[]>(`getTopMovies`))
       );
   }

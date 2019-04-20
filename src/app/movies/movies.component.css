@@ -32,7 +32,8 @@
 }
 
 .item-img img {
-  height: 91px;
+  /*height: 91px;*/
+  width: 65px;
 }
 
 .item-title {
