@@ -1,3 +1,4 @@
+/* tslint:disable:no-conditional-assignment no-bitwise */
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
@@ -7,6 +8,7 @@ import {UtilsService} from '../service/utils.service';
 import {SubtitleService} from '../service/subtitle.service';
 import {Subtitle} from '../entity/subtitle';
 import {Lang} from '../entity/lang';
+import {Color} from '../entity/color';
 
 @Component({
   selector: 'app-movie-detail',
@@ -16,18 +18,20 @@ import {Lang} from '../entity/lang';
 export class MovieDetailComponent implements OnInit {
   movie: Movie;
   subtitles: Subtitle[];
+  color: Color[];
 
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
     private subtitleService: SubtitleService,
-    private utils: UtilsService
+    public utils: UtilsService
   ) {
   }
 
   ngOnInit() {
     this.getMovie();
     this.getSubtitles();
+    this.color = [];
   }
 
   private getMovie(): void {
@@ -47,12 +51,6 @@ export class MovieDetailComponent implements OnInit {
   }
 
   setMainColor(): void {
-    function rgb(r, g, b, count) {
-      this.r = r;
-      this.g = g;
-      this.b = b;
-      this.count = count;
-    }
 
     const img = document.querySelector('.info-poster').querySelector('img');
     const blockSize = 47;
@@ -60,7 +58,7 @@ export class MovieDetailComponent implements OnInit {
     const context = canvas.getContext('2d');
     const rgbArray = [];
     for (let j = 0; j < 8; j++) {
-      rgbArray[j] = new rgb(0, 0, 0, 0);
+      rgbArray[j] = new Color(0, 0, 0, 0);
     }
     if (!context) {
       return;
@@ -81,31 +79,35 @@ export class MovieDetailComponent implements OnInit {
       rgbArray[index].b += data.data[i + 2];
       rgbArray[index].count++;
     }
+    // 按颜色多少排序
     rgbArray.sort((a, b) => b.count - a.count);
-    const color = [];
     let numCount = 0;
     for (let k = 0; k < 8; k++) {
       const r = Math.round(rgbArray[k].r / rgbArray[k].count);
       const b = Math.round(rgbArray[k].b / rgbArray[k].count);
       const g = Math.round(rgbArray[k].g / rgbArray[k].count);
-      if (k < 2 && r <= 32 && g <= 32 && b <= 32) {
+      if (r >= 200 && g >= 200 && b >= 200) {
         continue;
       }
-      if (k < 2 && r >= 224 && g >= 224 && b >= 224) {
+      if (this.color.length === 1 && r < 56 && g < 56 && b < 56) {
         continue;
       }
-      if (k < 2 && Math.abs(r - g) < 32 && Math.abs(r - b) < 32) {
-        continue;
+      if (k < 4 && this.color.length === 1) {
+        const distance = this.colorDistance(this.color[0], new Color(r, g, b, 1));
+        if (distance < 180) {
+          continue;
+        }
       }
-      const mainColor = 'rgba(' + r + ',' + g + ',' + b + ', 0.15)';
-      color.push(mainColor);
+      this.color.push(new Color(r, g, b, 1));
       numCount++;
       if (numCount === 2) {
+        // 按颜色深浅排序
+        this.color.sort((cA, cB) => cA.r + cA.g + cA.b - cB.r - cB.g - cB.b);
+        const gradient = 'linear-gradient(60deg,' + this.color[0].getColor() + ' 32%, ' + this.color[1].getColor() + ')';
+        document.querySelector('.movie-detail').querySelector('div').style.backgroundImage = gradient;
         break;
       }
     }
-    const gradient = 'linear-gradient(60deg,' + color[0] + ' 32%, ' + color[1] + ')';
-    document.querySelector('.movie-detail').querySelector('div').style.backgroundImage = gradient;
   }
 
   normalizeLang(language: string): Lang[] {
@@ -142,4 +144,15 @@ export class MovieDetailComponent implements OnInit {
     }
     return result;
   }
+
+  colorDistance(colorA: Color, colorB: Color): number {
+    const rmean = (colorA.r + colorB.r) / 2;
+    const r = colorA.r - colorB.r;
+    const g = colorA.g - colorB.g;
+    const b = colorA.b - colorB.b;
+    const distance = Math.sqrt((2 + rmean / 256) * r * r + 4 * g * g + (2 + (255 - rmean) / 256) * b * b);
+    console.log(colorA, colorB, distance)
+    return distance;
+  }
+
 }

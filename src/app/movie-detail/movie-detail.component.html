@@ -21,12 +21,12 @@
           </div>
         </div>
         <div class="info-base">
-          <div *ngIf="movie.genres">类别：{{movie.genres}}</div>
-          <div *ngIf="movie.directors">导演：{{movie.directors}}</div>
-          <div *ngIf="movie.countries">地区：{{movie.countries}}</div>
-          <div *ngIf="movie.casts">演员：{{movie.casts}}</div>
-          <div *ngIf="movie.aka">别名：{{movie.aka}}</div>
-          <div *ngIf="movie.summary">简介：{{movie.summary}}</div>
+          <div *ngIf="movie.genres"><span>类别：</span>{{movie.genres}}</div>
+          <div *ngIf="movie.directors"><span>导演：</span>{{movie.directors}}</div>
+          <div *ngIf="movie.countries"><span>地区：</span>{{movie.countries}}</div>
+          <div *ngIf="movie.casts"><span>演员：</span>{{movie.casts}}</div>
+          <div *ngIf="movie.aka"><span>别名：</span>{{movie.aka}}</div>
+          <div *ngIf="movie.summary"><span>简介：</span>{{movie.summary}}</div>
         </div>
 
       </div>
@@ -42,12 +42,13 @@
       <div *ngFor="let sub of subtitles" class="sub-item">
         <div class="sub-title">{{sub.title ? sub.title : sub.version}}</div>
         <div class="sub-tag">
-          <span class="se-info" *ngIf="sub.currentSeason">S{{sub.currentSeason}}E{{sub.currentEpisode}}</span>
+          <span class="se-info" *ngIf="sub.currentSeason && sub.currentEpisode !== '00'">S{{sub.currentSeason}}E{{sub.currentEpisode}}</span>
+          <span class="se-info" *ngIf="sub.currentEpisode === '00'">全季</span>
           <span *ngFor="let lang of normalizeLang(sub.language)"
                 class="lang-item lang-{{lang.code}}">{{lang.name}}</span>
         </div>
         <a class="download-btn" download="{{sub.fileName}}"
-           href="./assets/subtitles/{{utils.idPathBasic(movie.id)}}/{{sub.fileName}}" title="点击下载字幕">
+           href="./assets/subtitles/{{utils.idPathBasic(sub.subjectId)}}/{{sub.fileName}}" title="点击下载字幕">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
             <path d="M0 0h24v24H0z" fill="none"/>
