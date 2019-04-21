@@ -37,7 +37,7 @@ h2 {
 }
 
 .info-base span {
-  color: #ddd;
+  color: rgba(255,255,255,.7);
 }
 
 .douban-link {
@@ -77,7 +77,7 @@ h2 {
 }
 
 .rating .rating-bot {
-  color: #cccccc;
+  color: rgba(255,255,255,.7);
 }
 
 .rating .rating-top {
