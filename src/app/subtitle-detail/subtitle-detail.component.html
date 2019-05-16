@@ -1,9 +1,7 @@
-<div class="movie-detail">
+<div class="subtitle-detail">
   <div class="movie-section">
-    <div *ngIf="movie" class="w movie-info">
-      <h2>{{movie.title}} <span
-        *ngIf="movie.originalTitle != movie.title">{{movie.originalTitle}}</span> <span
-        *ngIf="movie.year"> ({{movie.year}})</span></h2>
+    <div *ngIf="movie && subtitle" class="w movie-info">
+      <h2 >{{subtitle.title}}</h2>
       <div class="info-left">
         <div class="info-poster">
           <img src="./assets/poster/{{utils.idPath(movie.id,movie.imgId)}}/{{movie.imgId}}.webp"
@@ -20,6 +18,11 @@
           </a>
         </div>
         <div class="info-base">
+
+          <h3>{{movie.title}} <span
+            *ngIf="movie.originalTitle != movie.title">{{movie.originalTitle}}</span> <span
+            *ngIf="movie.year"> ({{movie.year}})</span></h3>
+
           <div *ngIf="movie.genres"><span>类别：</span>{{movie.genres}}</div>
           <div *ngIf="movie.directors"><span>导演：</span>{{movie.directors}}</div>
           <div *ngIf="movie.countries"><span>地区：</span>{{movie.countries}}</div>
@@ -35,30 +38,4 @@
 
     </div>
   </div>
-
-  <div class="subtitle-section">
-    <div *ngIf="subtitles" class="w subtitle-list">
-      <div *ngFor="let sub of subtitles" class="sub-item" routerLink="/subtitle/{{sub.id}}">
-        <div class="sub-title">{{sub.title ? sub.title : sub.version}}</div>
-        <div class="sub-tag">
-          <span class="se-info" *ngIf="sub.currentSeason && sub.currentEpisode !== '00'">S{{sub.currentSeason}}E{{sub.currentEpisode}}</span>
-          <span class="se-info" *ngIf="sub.currentEpisode === '00'">全季</span>
-          <span *ngFor="let lang of normalizeLang(sub.language)"
-                class="lang-item lang-{{lang.code}}">{{lang.name}}</span>
-        </div>
-        <a class="download-btn" download="{{sub.fileName}}"
-           title="点击下载字幕">
-          <!--href="./assets/subtitles/{{utils.idPathBasic(sub.subjectId)}}/{{sub.fileName}}" -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-            <path d="M0 0h24v24H0z" fill="none"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-
-  </div>
-
-
 </div>
-

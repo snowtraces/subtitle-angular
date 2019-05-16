@@ -12,7 +12,7 @@ export class Color {
     this.a = a;
   }
 
-  getColor(): string {
-    return `rgba(${this.r},${this.g},${this.b},${this.a})`;
+  getColor(opacity: number): string {
+    return `rgba(${this.r},${this.g},${this.b}, ${opacity || this.a})`;
   }
 }

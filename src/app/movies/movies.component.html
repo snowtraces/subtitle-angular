@@ -15,7 +15,7 @@
           </a>
         </div>
         <div class="detail">
-          <p class="rating"><span class="rating-bot">★★★★★</span> <span class="rating-top" [ngStyle]="{'width.em': ratingCalc(movie)}" >★★★★★</span> <span class="rating-text" *ngIf="movie.rating">{{movie.rating / 100 | number: '1.1-1'}}</span></p>
+          <p class="rating"><span class="rating-bot">★★★★★</span> <span class="rating-top" [ngStyle]="{'width.em': (movie.rating / 200) || 0}" >★★★★★</span> <span class="rating-text" *ngIf="movie.rating">{{movie.rating / 100 | number: '1.1-1'}}</span></p>
           <p>{{movie.countries}} {{movie.genres}} {{movie.aka}}</p>
           <p>导演：{{movie.directors}}</p>
           <p>演员：{{movie.casts}}</p>

@@ -1,18 +1,13 @@
 .movie-section {
   transition: .1s;
   transition-timing-function: ease-in;
-  color: #ffffff;
   margin-top: -64px;
   padding-top: 64px;
-  /*background: #999;*/
 }
 
 h2 {
   margin-bottom: 1rem;
-}
-
-h2 span {
-  opacity: .67;
+  font-size: 1.25rem;
 }
 
 .movie-info {
@@ -99,82 +94,4 @@ h2 span {
   top: 0;
   left: 0;
   overflow: hidden;
-}
-
-/**
-  字幕
- */
-.subtitle-list {
-  padding: 1rem;
-  box-sizing: border-box;
-  font-size: 13px;
-}
-
-.sub-title {
-  font-size: 13px;
-}
-
-.sub-item {
-  padding: 5px 10px;
-  position: relative;
-  background: #f2f2f2;
-  margin-bottom: 2px;
-  cursor: pointer;
-}
-
-.sub-item:hover {
-  background: rgba(66, 133, 244, .2);
-}
-
-.lang-item, .se-info {
-  font-size: 12px;
-  padding: 2px 4px;
-  background: #444444;
-  color: #ffffff;
-  margin-right: 6px;
-  border-radius: 4px;
-}
-
-.lang-9 {
-  background: rgba(66, 133, 244, 1);
-}
-
-.lang-8 {
-  background: rgb(84, 204, 249);
-}
-
-.lang-7 {
-  background: rgb(243, 107, 185);
-}
-
-a.download-btn {
-  display: inline-block;
-  font-size: 13px;
-  color: #eee;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 10px;
-  height: 36px;
-  width: 36px;
-  border-radius: 50%;
-  box-sizing: border-box;
-  text-align: center;
-  padding-top: 5px;
-}
-
-a.download-btn:hover svg {
-  fill: rgba(66, 133, 244, .8);
-}
-
-a.download-btn:active svg {
-  fill: rgba(66, 133, 244, .9);
-}
-
-a.download-btn svg {
-  fill: #ccc;
-}
-
-.sub-item:hover svg {
-  fill: #ffffff;
 }

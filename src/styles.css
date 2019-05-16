@@ -19,11 +19,11 @@ a {
 }
 
 a:hover {
-  text-decoration: none;
+  cursor: pointer;
 }
 
-h1 {
-  font: bold 36px/100% Arial, Helvetica, sans-serif;
+a img {
+  vertical-align: middle;
 }
 
 input, button {
@@ -60,7 +60,8 @@ app-header {
 
 #footer {
   clear: both;
-  background-color: #607D8B;
+  background-color: #333;
+  color: #ffffff;
   margin-top: 2rem;
 }
 
@@ -82,11 +83,4 @@ MEDIA QUERIES
 /* for 480px or less */
 @media screen and (max-width: 480px) {
 
-  #header {
-    height: auto;
-  }
-
-  h1 {
-    font-size: 24px;
-  }
 }

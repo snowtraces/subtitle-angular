@@ -12,6 +12,7 @@ export class MovieService {
   private movieSearch = 'api/searchMovies';
   private movieList = 'api/listMovies';
   private moviePath = 'api/movie';
+  private moviePathBySubtitleId = 'api/movieBySubtitleId';
   private topMoviePath = 'api/listTopMovies';
 
   constructor(
@@ -66,6 +67,16 @@ export class MovieService {
       );
   }
 
+
+  getMovieBySubtitleId(subtitleId: string): Observable<Movie> {
+    const params = new HttpParams().set('subtitleId', String(subtitleId));
+    return this.http.get<Movie>(this.moviePathBySubtitleId, {params})
+      .pipe(
+        tap(() => this.log(`fetched movie subtitleId=${subtitleId}`)),
+        catchError(this.handleError<Movie>(`getMovie subtitleId=${subtitleId}`))
+      );
+  }
+
   getTopMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.topMoviePath)
       .pipe(
@@ -73,4 +84,5 @@ export class MovieService {
         catchError(this.handleError<Movie[]>(`getTopMovies`))
       );
   }
+
 }

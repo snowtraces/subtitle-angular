@@ -14,6 +14,7 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { TopMoviesComponent } from './top-movies/top-movies.component';
 import { CopyrightComponent } from './copyright/copyright.component';
+import { SubtitleDetailComponent } from './subtitle-detail/subtitle-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CopyrightComponent } from './copyright/copyright.component';
     MovieDetailComponent,
     FileUploadComponent,
     TopMoviesComponent,
-    CopyrightComponent
+    CopyrightComponent,
+    SubtitleDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,8 @@ import {Subtitle} from '../entity/subtitle';
   providedIn: 'root'
 })
 export class SubtitleService {
-  private subPath = 'api/listSubtitles';
+  private subListPath = 'api/listSubtitles';
+  private subtitlePath = 'api/getSubtitleById';
 
   constructor(
     private http: HttpClient,
@@ -30,11 +31,19 @@ export class SubtitleService {
 
   getSubtitles(id: number): Observable<Subtitle[]> {
     const params = new HttpParams().set('id', String(id));
-    return this.http.get<Subtitle[]>(this.subPath, {params})
+    return this.http.get<Subtitle[]>(this.subListPath, {params})
       .pipe(
         tap(() => this.log(`fetched subtitles id=${id}`)),
         catchError(this.handleError<Subtitle[]>(`getSubtitles id=${id}`))
       );
   }
 
+  getSubtitleById(subtitleId: string): Observable<Subtitle> {
+    const params = new HttpParams().set('id', String(subtitleId));
+    return this.http.get<Subtitle>(this.subtitlePath, {params})
+      .pipe(
+        tap(() => this.log(`fetched subtitle subtitleId=${subtitleId}`)),
+        catchError(this.handleError<Subtitle>(`getSubtitle subtitleId=${subtitleId}`))
+      );
+  }
 }
