@@ -39,7 +39,7 @@
   <div class="subtitle-section">
     <div *ngIf="subtitles" class="w subtitle-list">
       <div *ngFor="let sub of subtitles" class="sub-item" routerLink="/subtitle/{{sub.id}}">
-        <div class="sub-title">{{sub.title ? sub.title : sub.version}}</div>
+        <div class="sub-title" [innerHTML]="sub.title ? sub.title : sub.version | safeHtmlPipe"></div>
         <div class="sub-tag">
           <span class="se-info" *ngIf="sub.currentSeason && sub.currentEpisode !== '00'">S{{sub.currentSeason}}E{{sub.currentEpisode}}</span>
           <span class="se-info" *ngIf="sub.currentEpisode === '00'">全季</span>

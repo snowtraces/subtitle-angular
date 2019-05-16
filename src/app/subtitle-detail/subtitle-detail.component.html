@@ -1,7 +1,7 @@
 <div class="subtitle-detail">
   <div class="movie-section">
     <div *ngIf="movie && subtitle" class="w movie-info">
-      <h2 >{{subtitle.title}}</h2>
+      <h2 [innerHTML]="subtitle.title | safeHtmlPipe" ></h2>
       <div class="info-left">
         <div class="info-poster">
           <img src="./assets/poster/{{utils.idPath(movie.id,movie.imgId)}}/{{movie.imgId}}.webp"
