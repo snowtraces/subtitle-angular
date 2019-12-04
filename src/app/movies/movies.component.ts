@@ -30,8 +30,4 @@ export class MoviesComponent implements OnInit {
     this.getMovies();
   }
 
-  ratingCalc(movie: Movie): number {
-    return movie.rating / 200 || 0;
-  }
-
 }

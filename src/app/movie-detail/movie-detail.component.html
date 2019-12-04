@@ -38,8 +38,8 @@
 
   <div class="subtitle-section">
     <div *ngIf="subtitles" class="w subtitle-list">
-      <div *ngFor="let sub of subtitles" class="sub-item" routerLink="/subtitle/{{sub.id}}">
-        <div class="sub-title" [innerHTML]="sub.title ? sub.title : sub.version | safeHtmlPipe"></div>
+      <div *ngFor="let sub of subtitles" class="sub-item" >
+        <div class="sub-title" [innerHTML]="sub.title ? sub.title : sub.version | safeHtmlPipe" routerLink="/subtitle/{{sub.id}}"></div>
         <div class="sub-tag">
           <span class="se-info" *ngIf="sub.currentSeason && sub.currentEpisode !== '00'">S{{sub.currentSeason}}E{{sub.currentEpisode}}</span>
           <span class="se-info" *ngIf="sub.currentEpisode === '00'">全季</span>
@@ -47,8 +47,7 @@
                 class="lang-item lang-{{lang.code}}">{{lang.name}}</span>
         </div>
         <a class="download-btn" download="{{sub.fileName}}"
-           title="点击下载字幕">
-          <!--href="./assets/subtitles/{{utils.idPathBasic(sub.subjectId)}}/{{sub.fileName}}" -->
+           title="点击下载字幕" href="./assets/subtitles/{{utils.idPathBasic(sub.subjectId)}}/{{sub.fileName}}" >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
             <path d="M0 0h24v24H0z" fill="none"/>

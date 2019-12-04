@@ -53,7 +53,7 @@ export class MovieService {
     const params = new HttpParams().set('title', title);
     return this.http.get<Movie[]>(this.movieList, {params})
       .pipe(
-        tap(() => this.log('fetched heroes')),
+        tap(() => this.log('fetched movies')),
         catchError(this.handleError<Movie[]>('getMovies', []))
       );
   }

@@ -6,6 +6,7 @@ export class Subtitle {
   type: number;
   version: string;
   fileName: string;
+  sourceFileName: string;
   remark: string;
   currentSeason: string;
   currentEpisode: string;

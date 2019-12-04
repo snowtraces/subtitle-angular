@@ -70,8 +70,8 @@ export class UtilsService {
         continue;
       }
       if (color.length === 1) {
-        const distance = this.colorDistance(color[0], new Color(r, g, b, 1));
-        if (distance < 180) {
+        const isSimilar = this.colorIsSimilar(color[0], new Color(r, g, b, 1));
+        if (isSimilar) {
           continue;
         }
       }
@@ -83,18 +83,27 @@ export class UtilsService {
         return color;
       }
     }
+    while (color.length < 2) {
+      color.push(new Color(200, 200, 200, 1))
+    }
+    return color;
   }
 
   /**
    * 计算颜色距离
    */
-  colorDistance(colorA: Color, colorB: Color): number {
+  colorIsSimilar(colorA: Color, colorB: Color): boolean {
     const rmean = (colorA.r + colorB.r) / 2;
     const r = colorA.r - colorB.r;
     const g = colorA.g - colorB.g;
     const b = colorA.b - colorB.b;
     const distance = Math.sqrt((2 + rmean / 256) * r * r + 4 * g * g + (2 + (255 - rmean) / 256) * b * b);
-    console.log(colorA, colorB, distance)
-    return distance;
+    // const distance = (Math.abs(colorA.r - colorB.r)/255.0 + Math.abs(colorA.g - colorB.g)/255.0 + Math.abs(colorA.b - colorB.b)/255.0) / 3 * 100;
+    // const distance = Math.sqrt(Math.pow(colorA.r - colorB.r, 2) + Math.pow(colorA.g - colorB.g, 2) + Math.pow(colorA.b - colorB.b, 2)) ;
+
+    console.log(`%c ${colorA.getColor(1)} `, `background:${colorA.getColor(1)};color:#fff`)
+    console.log(`%c ${colorB.getColor(1)} `, `background:${colorB.getColor(1)};color:#fff`)
+    console.log("相似度：" + distance)
+    return distance < 180;
   }
 }

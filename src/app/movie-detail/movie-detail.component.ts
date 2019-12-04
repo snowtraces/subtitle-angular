@@ -42,10 +42,6 @@ export class MovieDetailComponent implements OnInit {
       .subscribe(movie => this.subtitles = movie);
   }
 
-  ratingCalc(movie: Movie): number {
-    return movie.rating / 200 || 0;
-  }
-
   setMainColor(): void {
     const img = document.querySelector('.info-poster').querySelector('img');
     const mainColor = this.utils.getMainColor(img);
@@ -57,7 +53,9 @@ export class MovieDetailComponent implements OnInit {
     const result = [];
     const langArr = language.split('');
     for (let i = 9; i >= 0; i--) {
-      if (langArr[i] === '0') { continue; }
+      if (langArr[i] === '0') {
+        continue;
+      }
       switch (i) {
         case 9:
           result.push(new Lang(i, '简体'));
