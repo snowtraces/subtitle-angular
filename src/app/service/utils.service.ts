@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Color} from '../entity/color';
 import {Lang} from '../entity/lang';
 
@@ -7,7 +7,8 @@ import {Lang} from '../entity/lang';
 })
 export class UtilsService {
 
-  constructor() { }
+  constructor() {
+  }
 
   /**
    * 将id转换成路径
@@ -18,6 +19,7 @@ export class UtilsService {
     }
     return this.idPathBasic(id);
   }
+
   idPathBasic(id: string): string {
     const len = 1;
     const steps = 5;
@@ -50,7 +52,7 @@ export class UtilsService {
     const data = context.getImageData(0, 0, width, height);
     const length = data.data.length;
     let i = -4;
-    let total = 0
+    let total = 0;
     while ((i += blockSize * 4) < length) {
       const rIndex = (data.data[i] - 128) >> 31;
       const gIndex = (data.data[i + 1] - 128) >> 31;
@@ -75,7 +77,7 @@ export class UtilsService {
       if (r <= 55 && g <= 55 && b <= 55) {
         // console.log(total, rgbArray[k].count, total / rgbArray[k].count)
         if (total / rgbArray[k].count >= 2) {
-          continue
+          continue;
         }
       }
 
@@ -94,7 +96,7 @@ export class UtilsService {
       }
     }
     while (color.length < 2) {
-      color.push(new Color(200, 200, 200, 1))
+      color.push(new Color(200, 200, 200, 1));
     }
     return color;
   }
@@ -111,9 +113,9 @@ export class UtilsService {
     // const distance = (Math.abs(colorA.r - colorB.r)/255.0 + Math.abs(colorA.g - colorB.g)/255.0 + Math.abs(colorA.b - colorB.b)/255.0) / 3 * 100;
     // const distance = Math.sqrt(Math.pow(colorA.r - colorB.r, 2) + Math.pow(colorA.g - colorB.g, 2) + Math.pow(colorA.b - colorB.b, 2)) ;
 
-    console.log(`%c ${colorA.getColor(1)} `, `background:${colorA.getColor(1)};color:#fff`)
-    console.log(`%c ${colorB.getColor(1)} `, `background:${colorB.getColor(1)};color:#fff`)
-    console.log("相似度：" + distance)
+    console.log(`%c ${colorA.getColor(1)} `, `background:${colorA.getColor(1)};color:#fff`);
+    console.log(`%c ${colorB.getColor(1)} `, `background:${colorB.getColor(1)};color:#fff`);
+    console.log('相似度：' + distance);
     return distance < 180;
   }
 
@@ -125,10 +127,10 @@ export class UtilsService {
    */
   setGradientBackground(begin: Color, end: Color, selector: string): void {
     let gradient = `linear-gradient(60deg, ${begin.getColor(0)} 32%, ${end.getColor(0)} )`;
-    let target = document.querySelector(selector)
+    let target = document.querySelector(selector);
     if (target) {
       // @ts-ignore
-      target.style.backgroundImage = gradient
+      target.style.backgroundImage = gradient;
     }
   }
 
@@ -172,6 +174,7 @@ export class UtilsService {
     }
     return result;
   }
+
   /**
    * 语言格式化
    * @param language
@@ -179,17 +182,16 @@ export class UtilsService {
   normalizeType(type: number): string {
     switch (type) {
       case 1:
-        return "翻译";
+        return '翻译';
       case 2:
-        return "官方译本";
+        return '官方译本';
       case 3:
-        return "听译";
+        return '听译';
       case 4:
-        return "机翻";
+        return '机翻';
       default:
         return null;
     }
   }
-
 
 }

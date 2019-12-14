@@ -22,6 +22,9 @@ export class SubtitleDetailComponent implements OnInit {
   showModal: boolean;
   @ViewChild('fileModal', {static: false}) fileModal: ElementRef;
   @ViewChild('modelContent', {static: false}) modalContent: ElementRef;
+  @ViewChild('subVersion', {static: false}) subVersion: ElementRef;
+  @ViewChild('subBanner', {static: false}) subBanner: ElementRef;
+  @ViewChild('subFile', {static: false}) subFile: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -66,7 +69,10 @@ export class SubtitleDetailComponent implements OnInit {
 
   private getSubtitleFile(): void {
     this.subtitleService.getSubtitleFileBySubId(this.subtitleId)
-      .subscribe(subtitleFiles => this.subFiles = subtitleFiles);
+      .subscribe(subtitleFiles => {
+        this.subFiles = subtitleFiles;
+        console.log(subtitleFiles);
+      });
   }
 
   setMainColor(): void {
@@ -75,6 +81,9 @@ export class SubtitleDetailComponent implements OnInit {
 
     this.utils.setGradientBackground(mainColor[0].setOpacity(.1), mainColor[1].setOpacity(.1), '.movie-section');
     this.utils.setGradientBackground(mainColor[0].setOpacity(1), mainColor[1].setOpacity(1), 'span.se-info');
-    this.utils.setGradientBackground(mainColor[0].setOpacity(1), mainColor[1].setOpacity(1), '.sub-banner');
+    this.subBanner.nativeElement.style.background = mainColor[0].getColor(1);
+    this.subVersion.nativeElement.style.borderColor = mainColor[0].getColor(1);
+    this.subVersion.nativeElement.style.background = mainColor[1].getColor(.1);
+    this.subFile.nativeElement.style.borderColor = mainColor[0].getColor(1);
   }
 }

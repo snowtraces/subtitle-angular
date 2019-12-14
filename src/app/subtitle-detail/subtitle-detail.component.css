@@ -111,7 +111,7 @@ h2 {
 }
 
 .sub-banner {
-  border-radius: 3px;
+  border-radius: 3px 3px 0 0;
   position: relative;
   height: 44px;
   overflow: hidden;
@@ -161,8 +161,9 @@ h2 {
 .sub-version {
   font-size: 14px;
   padding: 10px;
-  margin-top: 10px;
-  border: 1px solid red;
+  /*margin-top: 10px;*/
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
 }
 
 .sub-version span:first-of-type {
@@ -172,8 +173,10 @@ h2 {
 
 .sub-file {
   padding: 10px;
-  margin-top: 10px;
-  border: 1px solid red;
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  max-height: 300px;
+  overflow: auto;
 }
 
 .sub-file-item {

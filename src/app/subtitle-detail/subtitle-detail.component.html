@@ -42,7 +42,7 @@
 
   <div class="subtitle-section">
     <div *ngIf="sub" class="w subtitle-info">
-      <div class="sub-banner">
+      <div #subBanner class="sub-banner">
         <span *ngIf="sub.currentSeason && sub.currentEpisode !== '00'">S{{sub.currentSeason}}E{{sub.currentEpisode}}</span>
         <span *ngIf="sub.currentEpisode === '00'">全季</span>
         <span *ngIf="sub.type && sub.type !== 1">{{this.utils.normalizeType(sub.type)}}</span>
@@ -58,20 +58,18 @@
         </a>
       </div>
 
-      <div class="sub-version">
+      <div #subVersion class="sub-version">
         <div *ngIf="sub.source"><span>来源：</span>{{sub.source}}</div>
         <div *ngIf="sub.version"><span>版本：</span>{{sub.version}}</div>
         <div *ngIf="sub.fileName" ><span>文件：</span><span [innerHTML]=" sub.fileName | safeHtml"></span></div>
       </div>
 
-      <div  *ngIf="subFiles && subFiles.length > 0" class="sub-file">
-        <div *ngFor="let file of this.subFiles" class="sub-file-item" title="{{file.fileName}}">{{file.fileName}}
+      <div #subFile *ngIf="subFiles && subFiles.length > 0" class="sub-file">
+        <div *ngFor="let file of this.subFiles" class="sub-file-item" title="{{file.fileName}}">{{file.fileName || "#"}}
           <span class="sub-file-size">{{(file.fileSize / 1000).toFixed(2)}}k</span>
           <span class="sub-file-preview" (click)="showFileModal($event, file)">预览</span>
         </div>
       </div>
-
-
     </div>
   </div>
 

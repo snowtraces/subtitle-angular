@@ -1,17 +1,19 @@
-<app-header></app-header>
+<div id="wrapper">
+  <app-header></app-header>
 
-<div id="content">
-  <router-outlet></router-outlet>
-</div>
-
-<div id="message">
-  <div class="w">
-    <app-messages></app-messages>
+  <div id="content">
+    <router-outlet></router-outlet>
   </div>
-</div>
 
-<div id="footer">
-  <div class="w">
-    <app-copyright></app-copyright>
+  <!--<div id="message">-->
+  <!--  <div class="w">-->
+  <!--    <app-messages></app-messages>-->
+  <!--  </div>-->
+  <!--</div>-->
+
+  <div id="footer">
+    <div class="w">
+      <app-copyright></app-copyright>
+    </div>
   </div>
 </div>
