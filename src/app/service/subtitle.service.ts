@@ -4,6 +4,7 @@ import {MessageService} from './message.service';
 import {Observable, of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {Subtitle} from '../entity/subtitle';
+import {SubtitleFile} from '../entity/subtitleFile';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import {Subtitle} from '../entity/subtitle';
 export class SubtitleService {
   private subListPath = 'api/listSubtitles';
   private subtitlePath = 'api/getSubtitleById';
+  private subtitleFilePath = 'api/listSubtitleFile';
 
   constructor(
     private http: HttpClient,
@@ -44,6 +46,15 @@ export class SubtitleService {
       .pipe(
         tap(() => this.log(`fetched subtitle subtitleId=${subtitleId}`)),
         catchError(this.handleError<Subtitle>(`getSubtitle subtitleId=${subtitleId}`))
+      );
+  }
+
+  getSubtitleFileBySubId(subtitleId: string): Observable<SubtitleFile[]> {
+    const params = new HttpParams().set('subtitleId', String(subtitleId));
+    return this.http.get<SubtitleFile[]>(this.subtitleFilePath, {params})
+      .pipe(
+        tap(() => this.log(`fetched subtitleFile subtitleId=${subtitleId}`)),
+        catchError(this.handleError<SubtitleFile[]>(`getSubtitleFile subtitleId=${subtitleId}`))
       );
   }
 }

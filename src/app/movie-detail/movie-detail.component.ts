@@ -45,44 +45,6 @@ export class MovieDetailComponent implements OnInit {
   setMainColor(): void {
     const img = document.querySelector('.info-poster').querySelector('img');
     const mainColor = this.utils.getMainColor(img);
-    const gradient = `linear-gradient(60deg,${mainColor[0].getColor(1)} 32%, ${mainColor[1].getColor(1)})`;
-    document.querySelector('.movie-detail').querySelector('div').style.backgroundImage = gradient;
-  }
-
-  normalizeLang(language: string): Lang[] {
-    const result = [];
-    const langArr = language.split('');
-    for (let i = 9; i >= 0; i--) {
-      if (langArr[i] === '0') {
-        continue;
-      }
-      switch (i) {
-        case 9:
-          result.push(new Lang(i, '简体'));
-          break;
-        case 8:
-          result.push(new Lang(i, '繁体'));
-          break;
-        case 7:
-          result.push(new Lang(i, '英语'));
-          break;
-        case 6:
-          result.push(new Lang(i, '日语'));
-          break;
-        case 5:
-          result.push(new Lang(i, '韩语'));
-          break;
-        case 4:
-          result.push(new Lang(i, '法语'));
-          break;
-        case 3:
-          result.push(new Lang(i, '德语'));
-          break;
-        default:
-          result.push(new Lang(i, '其他'));
-          break;
-      }
-    }
-    return result;
+    this.utils.setGradientBackground(mainColor[0].setOpacity(1), mainColor[1].setOpacity(1), '.movie-section');
   }
 }

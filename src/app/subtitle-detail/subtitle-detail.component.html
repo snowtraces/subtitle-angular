@@ -1,7 +1,7 @@
 <div class="subtitle-detail">
   <div class="movie-section">
-    <div *ngIf="movie && subtitle" class="w movie-info">
-      <h2 [innerHTML]="subtitle.title | safeHtmlPipe" ></h2>
+    <div *ngIf="movie && sub" class="w movie-info">
+      <h2 [innerHTML]="sub.title | safeHtml" ></h2>
       <div class="info-left">
         <div class="info-poster">
           <img src="./assets/poster/{{utils.idPath(movie.id,movie.imgId)}}/{{movie.imgId}}.webp"
@@ -18,10 +18,11 @@
           </a>
         </div>
         <div class="info-base">
-
-          <h3>{{movie.title}} <span
-            *ngIf="movie.originalTitle != movie.title">{{movie.originalTitle}}</span> <span
-            *ngIf="movie.year"> ({{movie.year}})</span></h3>
+          <h3>
+            {{movie.title}}
+            <span class="org-title" *ngIf="movie.originalTitle != movie.title">{{movie.originalTitle}}</span>
+            <span class="org-title" *ngIf="movie.year"> ({{movie.year}})</span>
+          </h3>
 
           <div *ngIf="movie.genres"><span>类别：</span>{{movie.genres}}</div>
           <div *ngIf="movie.directors"><span>导演：</span>{{movie.directors}}</div>
@@ -40,15 +41,42 @@
   </div>
 
   <div class="subtitle-section">
-    <div *ngIf="subtitle" class="w">
-      <a class="download-btn" download="{{subtitle.fileName}}"
-         title="点击下载字幕"
-         href="./assets/subtitles/{{utils.idPathBasic(subtitle.subjectId)}}/{{subtitle.fileName}}" >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-          <path d="M0 0h24v24H0z" fill="none"/>
-        </svg>
-      </a>
+    <div *ngIf="sub" class="w subtitle-info">
+      <div class="sub-banner">
+        <span *ngIf="sub.currentSeason && sub.currentEpisode !== '00'">S{{sub.currentSeason}}E{{sub.currentEpisode}}</span>
+        <span *ngIf="sub.currentEpisode === '00'">全季</span>
+        <span *ngIf="sub.type && sub.type !== 1">{{this.utils.normalizeType(sub.type)}}</span>
+        <span *ngFor="let lang of this.utils.normalizeLang(sub.language)" >{{lang.name}}</span>
+
+        <a class="download-btn" download="{{sub.fileName}}"
+           title="点击下载字幕"
+           href="./assets/subtitles/{{utils.idPathBasic(sub.subjectId)}}/{{sub.fileName}}" >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="sub-version">
+        <div *ngIf="sub.source"><span>来源：</span>{{sub.source}}</div>
+        <div *ngIf="sub.version"><span>版本：</span>{{sub.version}}</div>
+        <div *ngIf="sub.fileName" ><span>文件：</span><span [innerHTML]=" sub.fileName | safeHtml"></span></div>
+      </div>
+
+      <div  *ngIf="subFiles && subFiles.length > 0" class="sub-file">
+        <div *ngFor="let file of this.subFiles" class="sub-file-item" title="{{file.fileName}}">{{file.fileName}}
+          <span class="sub-file-size">{{(file.fileSize / 1000).toFixed(2)}}k</span>
+          <span class="sub-file-preview" (click)="showFileModal($event, file)">预览</span>
+        </div>
+      </div>
+
+
     </div>
+  </div>
+
+  <div #fileModal id="file-modal" [hidden]="!showModal" tabindex="-1" (keydown)="tryCloseModal($event)">
+    <pre #modelContent class="modal-content"></pre>
+    <div (click)="closeModal()" class="modal-close">X</div>
   </div>
 </div>

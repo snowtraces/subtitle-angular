@@ -2,13 +2,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Pipe({
-  name: 'safeHtmlPipe'
+  name: 'safeHtml'
 })
-export class SafeHtmlPipePipe implements PipeTransform {
+export class SafeHtmlPipe implements PipeTransform {
   constructor(private sanitized: DomSanitizer) {}
-
   transform(value: any, args?: any): any {
-    return this.sanitized.bypassSecurityTrustHtml(value);
+    return this.sanitized.bypassSecurityTrustHtml(decodeURI(value));
   }
 
 }

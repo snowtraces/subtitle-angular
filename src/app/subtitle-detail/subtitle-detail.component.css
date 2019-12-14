@@ -39,8 +39,15 @@ h2 {
   margin-bottom: 1rem;
 }
 
-.info-base span {
+.info-base .org-title {
   opacity: .6;
+}
+
+.info-base .se-info {
+  display: inline-block;
+  color: #ffffff;
+  padding: 0 5px;
+  border-radius: 3px;
 }
 
 .douban-link {
@@ -94,4 +101,158 @@ h2 {
   top: 0;
   left: 0;
   overflow: hidden;
+}
+
+/* .subtitle-info */
+.subtitle-info {
+  padding: 1rem;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+.sub-banner {
+  border-radius: 3px;
+  position: relative;
+  height: 44px;
+  overflow: hidden;
+}
+
+.sub-banner > span {
+  display: inline-block;
+  position: relative;
+  padding: 10px 20px;
+  /*border-right:1px solid #ffffff;*/
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.sub-banner > span::after {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 44px;
+  border-right: 1px solid #ffffff;
+  top: 0;
+  right: 0;
+  opacity: .5;
+}
+
+.sub-banner > span:hover {
+  background: rgba(255, 255, 255, .4);
+}
+
+.sub-banner a.download-btn {
+  line-height: 1;
+  position: absolute;
+  right: 0;
+  color: #ffffff;
+  fill: #ffffff;
+  padding: 10px;
+  background: rgba(255, 255, 255, .1);
+  transition: all .2s;
+}
+
+.sub-banner a.download-btn:hover {
+  background: rgba(255, 255, 255, .3);
+}
+
+.sub-version {
+  font-size: 14px;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid red;
+}
+
+.sub-version span:first-of-type {
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.sub-file {
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid red;
+}
+
+.sub-file-item {
+  position: relative;
+  line-height: 30px;
+  padding-right: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sub-file-preview {
+  padding: 3px 5px;
+  position: absolute;
+  right: 0;
+  background: #ffffff;
+  line-height: 1;
+  border-radius: 2px;
+  color: #1a73e8;
+  margin-top: 6px;
+  cursor: pointer;
+}
+
+.sub-file-size {
+  padding: 3px 5px;
+  position: absolute;
+  right: 38px;
+  color: #1a73e8;
+  line-height: 1;
+  background: #ffffff;
+  margin-top: 6px;
+}
+
+#file-modal {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, .5);
+}
+
+#file-modal > pre {
+  position: fixed;
+  z-index: 1;
+  left: 20%;
+  top: calc(45vh - 250px);
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  width: 60%;
+  height: 500px;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 3px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+#file-modal .modal-close {
+  position: fixed;
+  z-index: 3;
+  left: calc(80% + 22px - 70px);
+  top: calc(45vh - 250px + 20px);
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, .3);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 50px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+#file-modal .modal-close:hover {
+  background: rgba(0, 0, 0, .6);
 }

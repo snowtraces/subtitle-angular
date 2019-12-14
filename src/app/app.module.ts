@@ -15,7 +15,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { TopMoviesComponent } from './top-movies/top-movies.component';
 import { CopyrightComponent } from './copyright/copyright.component';
 import { SubtitleDetailComponent } from './subtitle-detail/subtitle-detail.component';
-import { SafeHtmlPipePipe } from './service/safe-html-pipe.pipe';
+import { SafeHtmlPipe } from './service/safe-html-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { SafeHtmlPipePipe } from './service/safe-html-pipe.pipe';
     TopMoviesComponent,
     CopyrightComponent,
     SubtitleDetailComponent,
-    SafeHtmlPipePipe
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,

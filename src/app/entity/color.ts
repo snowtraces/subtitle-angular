@@ -13,6 +13,11 @@ export class Color {
   }
 
   getColor(opacity: number): string {
-    return `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity || this.a})`;
+    return `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity || this.a || 1})`;
+  }
+
+  setOpacity(opacity: number): Color {
+    this.a = opacity;
+    return this;
   }
 }

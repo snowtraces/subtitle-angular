@@ -1,9 +1,9 @@
-import { SafeHtmlPipePipe } from './safe-html-pipe.pipe';
+import { SafeHtmlPipe } from './safe-html-pipe.pipe';
 
-describe('SafeHtmlPipePipe', () => {
+describe('SafeHtmlPipe', () => {
   it('create an instance', () => {
     // @ts-ignore
-    const pipe = new SafeHtmlPipePipe();
+    const pipe = new SafeHtmlPipe();
     expect(pipe).toBeTruthy();
   });
 });

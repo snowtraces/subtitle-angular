@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Color} from '../entity/color';
+import {Lang} from '../entity/lang';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,7 @@ export class UtilsService {
     const data = context.getImageData(0, 0, width, height);
     const length = data.data.length;
     let i = -4;
+    let total = 0
     while ((i += blockSize * 4) < length) {
       const rIndex = (data.data[i] - 128) >> 31;
       const gIndex = (data.data[i + 1] - 128) >> 31;
@@ -58,6 +60,7 @@ export class UtilsService {
       rgbArray[index].g += data.data[i + 1];
       rgbArray[index].b += data.data[i + 2];
       rgbArray[index].count++;
+      total++;
     }
     // 按颜色多少排序
     rgbArray.sort((a, b) => b.count - a.count);
@@ -69,6 +72,13 @@ export class UtilsService {
       if (r >= 200 && g >= 200 && b >= 200) {
         continue;
       }
+      if (r <= 55 && g <= 55 && b <= 55) {
+        // console.log(total, rgbArray[k].count, total / rgbArray[k].count)
+        if (total / rgbArray[k].count >= 2) {
+          continue
+        }
+      }
+
       if (color.length === 1) {
         const isSimilar = this.colorIsSimilar(color[0], new Color(r, g, b, 1));
         if (isSimilar) {
@@ -106,4 +116,80 @@ export class UtilsService {
     console.log("相似度：" + distance)
     return distance < 180;
   }
+
+  /**
+   * 设置背景渐变色
+   * @param begin
+   * @param end
+   * @param selector
+   */
+  setGradientBackground(begin: Color, end: Color, selector: string): void {
+    let gradient = `linear-gradient(60deg, ${begin.getColor(0)} 32%, ${end.getColor(0)} )`;
+    let target = document.querySelector(selector)
+    if (target) {
+      // @ts-ignore
+      target.style.backgroundImage = gradient
+    }
+  }
+
+  /**
+   * 语言格式化
+   * @param language
+   */
+  normalizeLang(language: string): Lang[] {
+    const result = [];
+    const langArr = language.split('');
+    for (let i = 9; i >= 0; i--) {
+      if (langArr[i] === '0') {
+        continue;
+      }
+      switch (i) {
+        case 9:
+          result.push(new Lang(i, '简体'));
+          break;
+        case 8:
+          result.push(new Lang(i, '繁体'));
+          break;
+        case 7:
+          result.push(new Lang(i, '英语'));
+          break;
+        case 6:
+          result.push(new Lang(i, '日语'));
+          break;
+        case 5:
+          result.push(new Lang(i, '韩语'));
+          break;
+        case 4:
+          result.push(new Lang(i, '法语'));
+          break;
+        case 3:
+          result.push(new Lang(i, '德语'));
+          break;
+        default:
+          result.push(new Lang(i, '其他'));
+          break;
+      }
+    }
+    return result;
+  }
+  /**
+   * 语言格式化
+   * @param language
+   */
+  normalizeType(type: number): string {
+    switch (type) {
+      case 1:
+        return "翻译";
+      case 2:
+        return "官方译本";
+      case 3:
+        return "听译";
+      case 4:
+        return "机翻";
+      default:
+        return null;
+    }
+  }
+
+
 }

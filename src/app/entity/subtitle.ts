@@ -10,4 +10,5 @@ export class Subtitle {
   remark: string;
   currentSeason: string;
   currentEpisode: string;
+  source: string;
 }
