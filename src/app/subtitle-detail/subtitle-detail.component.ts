@@ -37,7 +37,7 @@ export class SubtitleDetailComponent implements OnInit {
 
   public showFileModal(event, file: SubtitleFile) {
     this.showModal = true;
-    this.modalContent.nativeElement.innerHTML = file.content;
+    this.modalContent.nativeElement.innerHTML = file.content || '该类型文件不支持预览';
   }
 
   public closeModal() {
@@ -47,6 +47,7 @@ export class SubtitleDetailComponent implements OnInit {
   public tryCloseModal(event) {
     if (this.showModal) {
       this.showModal = event.key !== 'Escape';
+      this.showModal = event.target !== this.fileModal.nativeElement;
     }
   }
 
@@ -84,6 +85,7 @@ export class SubtitleDetailComponent implements OnInit {
     this.subBanner.nativeElement.style.background = mainColor[0].getColor(1);
     this.subVersion.nativeElement.style.borderColor = mainColor[0].getColor(1);
     this.subVersion.nativeElement.style.background = mainColor[1].getColor(.1);
-    this.subFile.nativeElement.style.borderColor = mainColor[0].getColor(1);
+    // tslint:disable-next-line:no-unused-expression
+    this.subFile && (this.subFile.nativeElement.style.borderColor = mainColor[0].getColor(1));
   }
 }

@@ -76,7 +76,7 @@ export class UtilsService {
       }
       if (r <= 55 && g <= 55 && b <= 55) {
         // console.log(total, rgbArray[k].count, total / rgbArray[k].count)
-        if (total / rgbArray[k].count >= 2) {
+        if (total / rgbArray[k].count >= 3) {
           continue;
         }
       }

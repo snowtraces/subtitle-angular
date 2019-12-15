@@ -73,7 +73,10 @@
     </div>
   </div>
 
-  <div #fileModal id="file-modal" [hidden]="!showModal" tabindex="-1" (keydown)="tryCloseModal($event)">
+  <div #fileModal id="file-modal" [hidden]="!showModal" tabindex="-1"
+       (keydown)="tryCloseModal($event)"
+       (click)="tryCloseModal($event)"
+  >
     <pre #modelContent class="modal-content"></pre>
     <div (click)="closeModal()" class="modal-close">X</div>
   </div>

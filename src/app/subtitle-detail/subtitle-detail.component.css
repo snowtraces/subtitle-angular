@@ -236,7 +236,7 @@ h2 {
   white-space: pre-wrap;
   word-break: break-all;
   font-size: 14px;
-  font-family: inherit;
+  font-family: sans-serif;
 }
 
 #file-modal .modal-close {
