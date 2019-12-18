@@ -5,7 +5,7 @@
       <div class="info-left">
         <div class="info-poster">
           <img src="./assets/poster/{{utils.idPath(movie.id,movie.imgId)}}/{{movie.imgId}}.webp"
-               onerror="this.src='./assets/poster/default/movie_default_small.webp'"
+               (error)="this.utils.imageReload($event)"
                (load)="setMainColor()"
           >
           <a title="去豆瓣查看" href="https://movie.douban.com/subject/{{movie.id}}/" target="_blank" class="douban-link">

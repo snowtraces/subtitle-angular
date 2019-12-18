@@ -9,7 +9,7 @@ import {MessageService} from '../service/message.service';
 export class MessagesComponent implements OnInit {
 
   constructor(
-    private messageService: MessageService,
+    public messageService: MessageService,
   ) {
   }
 
