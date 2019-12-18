@@ -195,7 +195,7 @@ export class UtilsService {
   }
 
   imageReload(event: any, count: number = 0): void {
-    let tail = '?_=' + Math.random();
+    let tail = '_=';
     let imageDom = event.target || event || {};
     let src = imageDom.src;
     if (count >= 1 || !src || src.endsWith(tail)) {
@@ -203,7 +203,7 @@ export class UtilsService {
       imageDom.src = './assets/poster/default/movie_default_small.webp';
     } else {
       setTimeout(function() {
-        imageDom.src = src + tail;
+        imageDom.src = src + '?' + Math.random() + tail;
       }, 500);
       imageDom.onerror = this.imageReload(imageDom, count + 1);
     }
