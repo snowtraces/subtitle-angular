@@ -20,11 +20,13 @@ export class SubtitleDetailComponent implements OnInit {
   subFiles: SubtitleFile[];
 
   showModal: boolean;
+  downloaded: boolean;
   @ViewChild('fileModal', {static: false}) fileModal: ElementRef;
   @ViewChild('modelContent', {static: false}) modalContent: ElementRef;
   @ViewChild('subVersion', {static: false}) subVersion: ElementRef;
   @ViewChild('subBanner', {static: false}) subBanner: ElementRef;
   @ViewChild('subFile', {static: false}) subFile: ElementRef;
+  @ViewChild('downloadBtn', {static: false}) downloadBtn: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +35,7 @@ export class SubtitleDetailComponent implements OnInit {
     public utils: UtilsService
   ) {
     this.showModal = false;
+    this.downloaded = false;
   }
 
   public showFileModal(event, file: SubtitleFile) {
@@ -70,10 +73,7 @@ export class SubtitleDetailComponent implements OnInit {
 
   private getSubtitleFile(): void {
     this.subtitleService.getSubtitleFileBySubId(this.subtitleId)
-      .subscribe(subtitleFiles => {
-        this.subFiles = subtitleFiles;
-        console.log(subtitleFiles);
-      });
+      .subscribe(subtitleFiles => this.subFiles = subtitleFiles);
   }
 
   setMainColor(): void {
@@ -87,5 +87,21 @@ export class SubtitleDetailComponent implements OnInit {
     this.subVersion.nativeElement.style.background = mainColor[1].getColor(.1);
     // tslint:disable-next-line:no-unused-expression
     this.subFile && (this.subFile.nativeElement.style.borderColor = mainColor[0].getColor(1));
+  }
+
+  doDownload() {
+    if (this.downloaded) {
+      return;
+    }
+    this.subtitleService.doSubtitleDownload(this.subtitleId)
+      .subscribe(result => {
+        if (result) {
+          this.downloaded = result;
+          this.sub.downloadTimes = this.sub.downloadTimes + 1;
+          this.downloadBtn.nativeElement.removeAttribute('href');
+          this.downloadBtn.nativeElement.removeAttribute('download');
+          this.downloadBtn.nativeElement.title = '字幕已下载';
+        }
+      });
   }
 }

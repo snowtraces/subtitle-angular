@@ -158,6 +158,19 @@ h2 {
   background: rgba(255, 255, 255, .3);
 }
 
+.sub-banner > span.download-times {
+  position: absolute;
+  right: 40px;
+}
+
+.sub-banner > span.download-times:hover {
+  background: none;
+}
+
+.sub-banner > span.download-times::after {
+  display: none;
+}
+
 .sub-version {
   font-size: 14px;
   padding: 10px;

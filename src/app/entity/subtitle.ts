@@ -11,4 +11,5 @@ export class Subtitle {
   currentSeason: string;
   currentEpisode: string;
   source: string;
+  downloadTimes: number;
 }

@@ -13,6 +13,7 @@ export class SubtitleService {
   private subListPath = 'api/listSubtitles';
   private subtitlePath = 'api/getSubtitleById';
   private subtitleFilePath = 'api/listSubtitleFile';
+  private subtitleDownloadPath = 'api/doDownload';
 
   constructor(
     private http: HttpClient,
@@ -41,7 +42,7 @@ export class SubtitleService {
   }
 
   getSubtitleById(subtitleId: string): Observable<Subtitle> {
-    const params = new HttpParams().set('id', String(subtitleId));
+    const params = new HttpParams().set('id', subtitleId);
     return this.http.get<Subtitle>(this.subtitlePath, {params})
       .pipe(
         tap(() => this.log(`fetched subtitle subtitleId=${subtitleId}`)),
@@ -50,11 +51,20 @@ export class SubtitleService {
   }
 
   getSubtitleFileBySubId(subtitleId: string): Observable<SubtitleFile[]> {
-    const params = new HttpParams().set('subtitleId', String(subtitleId));
+    const params = new HttpParams().set('subtitleId', subtitleId);
     return this.http.get<SubtitleFile[]>(this.subtitleFilePath, {params})
       .pipe(
         tap(() => this.log(`fetched subtitleFile subtitleId=${subtitleId}`)),
         catchError(this.handleError<SubtitleFile[]>(`getSubtitleFile subtitleId=${subtitleId}`))
+      );
+  }
+
+  doSubtitleDownload(subtitleId: string): Observable<boolean> {
+    const params = new HttpParams().set('subtitleId', subtitleId);
+    return this.http.get<boolean>(this.subtitleDownloadPath, {params})
+      .pipe(
+        tap(() => this.log(`download subtitle subtitleId=${subtitleId}`)),
+        catchError(this.handleError<boolean>(`doSubtitleDownload subtitleId=${subtitleId}`))
       );
   }
 }

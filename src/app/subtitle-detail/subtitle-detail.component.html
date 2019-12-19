@@ -47,10 +47,12 @@
         <span *ngIf="sub.currentEpisode === '00'">全季</span>
         <span *ngIf="sub.type && sub.type !== 1">{{this.utils.normalizeType(sub.type)}}</span>
         <span *ngFor="let lang of this.utils.normalizeLang(sub.language)" >{{lang.name}}</span>
-
-        <a class="download-btn" download="{{sub.fileName}}"
+        <span class="download-times">{{sub.downloadTimes || 0}}</span>
+        <a #downloadBtn class="download-btn download-{{downloaded}}" download="{{sub.fileName}}"
            title="点击下载字幕"
-           href="./assets/subtitles/{{utils.idPathBasic(sub.subjectId)}}/{{sub.fileName}}" >
+           (click)="doDownload()"
+           href="./assets/subtitles/{{utils.idPathBasic(sub.subjectId)}}/{{sub.fileName}}"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
             <path d="M0 0h24v24H0z" fill="none"/>
