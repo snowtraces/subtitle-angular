@@ -62,6 +62,7 @@
         <div *ngIf="sub.source"><span>来源：</span>{{sub.source}}</div>
         <div *ngIf="sub.version"><span>版本：</span>{{sub.version}}</div>
         <div *ngIf="sub.fileName" ><span>文件：</span><span [innerHTML]=" sub.fileName | safeHtml"></span></div>
+        <div *ngIf="sub.remark" ><span>说明：</span><pre class="force-break" [innerHTML]=" sub.remark | safeHtml"></pre></div>
       </div>
 
       <div #subFile *ngIf="subFiles && subFiles.length > 0" class="sub-file">

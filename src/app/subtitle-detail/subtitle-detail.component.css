@@ -166,6 +166,13 @@ h2 {
   border-style: solid;
 }
 
+.sub-version pre {
+  word-break: break-all;
+  white-space: pre-wrap;
+  margin-left: 48px;
+  margin-top: -24px;
+}
+
 .sub-version span:first-of-type {
   font-weight: 600;
   letter-spacing: 2px;

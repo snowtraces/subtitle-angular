@@ -177,7 +177,7 @@ export class UtilsService {
 
   /**
    * 语言格式化
-   * @param language
+   * @param type
    */
   normalizeType(type: number): string {
     switch (type) {
