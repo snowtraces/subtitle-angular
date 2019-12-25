@@ -1,5 +1,10 @@
 # SubtitleAngular
 
+## TODO List
++ 基于localstorage和时间的首页缓存
++ 基于localstorage和时间的movie详情缓存
++ 缓存淘汰机制
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5.
 
 ## Development server
