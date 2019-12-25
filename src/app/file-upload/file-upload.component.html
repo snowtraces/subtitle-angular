@@ -1,6 +1,7 @@
 <div class="form-group">
   <input type="file"
          id="file"
+         accept=".srt"
          (change)="handleFileInput($event.target.files)">
   <button (click)="uploadFileToActivity()">上传</button>
 </div>

@@ -1,4 +1,4 @@
-export class SRTSuntitleUnit {
+export class SRTSubtitleUnit {
   number: number;
   start: number;
   end: number;

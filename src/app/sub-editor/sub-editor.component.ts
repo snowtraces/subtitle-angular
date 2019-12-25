@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {SRTSuntitleUnit} from '../entity/SRTSuntitleUnit';
+import {SRTSubtitleUnit} from '../entity/SRTSubtitleUnit';
 
 @Component({
   selector: 'app-sub-editor',
@@ -8,17 +7,15 @@ import {SRTSuntitleUnit} from '../entity/SRTSuntitleUnit';
   styleUrls: ['./sub-editor.component.css']
 })
 export class SubEditorComponent implements OnInit {
-  term: string;
-  result: SRTSuntitleUnit[];
+  result: SRTSubtitleUnit[];
 
-  constructor(private route: ActivatedRoute) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.term = this.route.snapshot.paramMap.get('term');
   }
 
-  getData(result: SRTSuntitleUnit[]) {
+  getData(result: SRTSubtitleUnit[]) {
     if (result[0].start) {
       this.result = result;
     }
