@@ -59,8 +59,7 @@ export class MovieService {
   }
 
   getMovie(id: number): Observable<Movie> {
-    const params = new HttpParams().set('id', String(id));
-    return this.http.get<Movie>(this.moviePath, {params})
+    return this.http.get<Movie>(`${this.moviePath}/${id}`)
       .pipe(
         tap(() => this.log(`fetched movie id=${id}`)),
         catchError(this.handleError<Movie>(`getMovie id=${id}`))
