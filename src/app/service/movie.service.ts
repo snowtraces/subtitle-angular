@@ -41,7 +41,7 @@ export class MovieService {
       return of([]);
     }
     return this.http.get<Movie[]>(`${this.movieSearch}?title=${term}`).pipe(
-      tap(() => this.log(`found movies matching "${term}"`)),
+      tap<any>(() => this.log(`found movies matching "${term}"`)),
       catchError(this.handleError<Movie[]>('searchHeroes', []))
     );
   }
@@ -53,7 +53,7 @@ export class MovieService {
     const params = new HttpParams().set('title', title);
     return this.http.get<Movie[]>(this.movieList, {params})
       .pipe(
-        tap(() => this.log('fetched movies')),
+        tap<any>(() => this.log('fetched movies')),
         catchError(this.handleError<Movie[]>('getMovies', []))
       );
   }
@@ -61,7 +61,7 @@ export class MovieService {
   getMovie(id: number): Observable<Movie> {
     return this.http.get<Movie>(`${this.moviePath}/${id}`)
       .pipe(
-        tap(() => this.log(`fetched movie id=${id}`)),
+        tap<any>(() => this.log(`fetched movie id=${id}`)),
         catchError(this.handleError<Movie>(`getMovie id=${id}`))
       );
   }
@@ -71,7 +71,7 @@ export class MovieService {
     const params = new HttpParams().set('subtitleId', String(subtitleId));
     return this.http.get<Movie>(this.moviePathBySubtitleId, {params})
       .pipe(
-        tap(() => this.log(`fetched movie subtitleId=${subtitleId}`)),
+        tap<any>(() => this.log(`fetched movie subtitleId=${subtitleId}`)),
         catchError(this.handleError<Movie>(`getMovie subtitleId=${subtitleId}`))
       );
   }
@@ -79,7 +79,7 @@ export class MovieService {
   getTopMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.topMoviePath)
       .pipe(
-        tap(() => this.log(`fetch top movies`)),
+        tap<any>(() => this.log(`fetch top movies`)),
         catchError(this.handleError<Movie[]>(`getTopMovies`))
       );
   }
