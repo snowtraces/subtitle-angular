@@ -9,6 +9,7 @@ import {UtilsService} from '../service/utils.service';
   styleUrls: ['./top-movies.component.css']
 })
 export class TopMoviesComponent implements OnInit {
+  KRY_HOT_MOVIES = 'key_hot_movies';
   movies: Movie[];
 
   constructor(
@@ -22,7 +23,20 @@ export class TopMoviesComponent implements OnInit {
   }
 
   getTopMovies(): void {
+    this.movies = JSON.parse(localStorage.getItem(this.KRY_HOT_MOVIES));
     this.movieService.getTopMovies()
-      .subscribe(movies => this.movies = movies);
+      .subscribe(movies => {
+        if (this.checkIsUpdate(movies, this.movies)) {
+          this.movies = movies;
+          localStorage.setItem(this.KRY_HOT_MOVIES, JSON.stringify(movies));
+        }
+      });
+  }
+
+  checkIsUpdate(newData: Movie[], oldData: Movie[]): boolean {
+    if (!newData || !oldData) {
+      return true;
+    }
+    return newData.map(m => m.id).join() !== oldData.map(m => m.id).join();
   }
 }
