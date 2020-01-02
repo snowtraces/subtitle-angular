@@ -62,12 +62,12 @@ export class SubtitleDetailComponent implements OnInit {
   }
 
   private getMovie(): void {
-    const id = this.route.snapshot.paramMap.get('mid');
-    const movieCache = this.utils.getMovieCache(id);
+    const mid = this.route.snapshot.paramMap.get('mid');
+    const movieCache = this.utils.getMovieCache(mid);
     if (movieCache) {
       this.movie = movieCache;
     } else {
-      this.movieService.getMovie(Number(id))
+      this.movieService.getMovie(Number(mid))
         .subscribe(movie => {
           this.movie = movie;
           this.utils.setMovieCache(movie);
@@ -76,8 +76,16 @@ export class SubtitleDetailComponent implements OnInit {
   }
 
   private getSubtitleById(): void {
-    this.subtitleService.getSubtitleById(this.subtitleId)
-      .subscribe(subtitle => this.sub = subtitle);
+    const subCache = this.utils.getSubtitleCache(this.subtitleId);
+    if (subCache) {
+      this.sub = subCache;
+    } else {
+      this.subtitleService.getSubtitleById(this.subtitleId)
+        .subscribe(subtitle => {
+          this.sub = subtitle;
+          this.utils.setSubtitleCache(subtitle);
+        });
+    }
   }
 
   private getSubtitleFile(): void {
@@ -110,6 +118,7 @@ export class SubtitleDetailComponent implements OnInit {
           this.downloadBtn.nativeElement.removeAttribute('href');
           this.downloadBtn.nativeElement.removeAttribute('download');
           this.downloadBtn.nativeElement.title = '字幕已下载';
+          this.utils.updateSubtitleCache({id: this.subtitleId, downloadTimes: this.sub.downloadTimes});
         }
       });
   }

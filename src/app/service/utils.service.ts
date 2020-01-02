@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Color} from '../entity/color';
 import {Lang} from '../entity/lang';
 import {Movie} from '../entity/movie';
+import {Subtitle} from '../entity/subtitle';
 
 @Injectable({
   providedIn: 'root'
@@ -216,41 +217,96 @@ export class UtilsService {
   }
 
   private MOVIE_CACHE_KEY = 'key_movie_cache';
-  private MOVIE_CACHE_MAX_SIZE = 2;
+  private SUBTITLE_CACHE_KEY = 'key_subtitle_cache';
+  private cache_config = {
+    'key_movie_cache': {
+      max_size: 100
+    },
+    'key_subtitle_cache': {
+      max_size: 300
+    },
+  };
 
   /**
-   * 获取本地电影缓存
-   *
-   * {data:{id:movie}, key:[]}
+   * {data:{id:cache}, key:[]}
    *
    * @param id
+   * @param key
    */
-  getMovieCache(id: string): Movie {
-    let movieCache = localStorage.getItem(this.MOVIE_CACHE_KEY);
-    if (!movieCache || movieCache === 'undefined') {
+  private getCache(id: string, cacheKey: string) {
+    let cache = localStorage.getItem(cacheKey);
+    if (!cache || cache === 'undefined') {
       return null;
     }
-    return ((JSON.parse(movieCache) || {}).data || {})[id];
+    return ((JSON.parse(cache) || {}).data || {})[id];
   }
 
   /**
-   * 设置本地电影缓存
-   * @param movie
+   * 设置本地缓存
+   * @param obj
+   * @param cacheKey
+   * @param idGetFun
    */
-  setMovieCache(movie: Movie): void {
-    let id = movie.id;
-    let movieCache = JSON.parse(localStorage.getItem(this.MOVIE_CACHE_KEY)) || {};
-    let key = movieCache['key'] || [];
-    let data = movieCache['data'] || {};
-    if (key.length === this.MOVIE_CACHE_MAX_SIZE) {
+  private setCache(obj: Object, cacheKey: string, idGetFun: Function): void {
+    let id = idGetFun ? idGetFun.call(null, obj) : obj['id'];
+    let cache = JSON.parse(localStorage.getItem(cacheKey)) || {};
+    let key = cache['key'] || [];
+    let data = cache['data'] || {};
+    if (key.length === this.cache_config[cacheKey].max_size) {
       let deleteKey = key.shift();
       delete data[deleteKey];
     }
 
     key.push(id);
-    data[id] = movie;
-    movieCache['key'] = key;
-    movieCache['data'] = data;
-    localStorage.setItem(this.MOVIE_CACHE_KEY, JSON.stringify(movieCache));
+    data[id] = obj;
+    cache['key'] = key;
+    cache['data'] = data;
+    localStorage.setItem(cacheKey, JSON.stringify(cache));
+  }
+
+  /**
+   * 更新指定缓存
+   * @param id
+   * @param obj
+   * @param cacheKey
+   */
+  private updateCache(obj: Object, cacheKey: string, idGetFun: Function): void {
+    let id = idGetFun ? idGetFun.call(null, obj) : obj['id'];
+    let cache = JSON.parse(localStorage.getItem(cacheKey)) || {};
+    let key = cache['key'] || [];
+    if (key.indexOf(id) === -1) {
+      return;
+    }
+    let data = cache['data'] || {};
+
+    // 更新对象
+    let cacheObj = data[id];
+    for (let objKey in obj) {
+      cacheObj[objKey] = obj[objKey];
+    }
+
+    data[id] = cacheObj;
+    cache['data'] = data;
+    localStorage.setItem(cacheKey, JSON.stringify(cache));
+  }
+
+  getMovieCache(id: string): Movie {
+    return this.getCache(id, this.MOVIE_CACHE_KEY);
+  }
+
+  setMovieCache(movie: Movie): void {
+    this.setCache(movie, this.MOVIE_CACHE_KEY, null);
+  }
+
+  getSubtitleCache(id: string): Subtitle {
+    return this.getCache(id, this.SUBTITLE_CACHE_KEY);
+  }
+
+  setSubtitleCache(subtitle: Subtitle): void {
+    this.setCache(subtitle, this.SUBTITLE_CACHE_KEY, null);
+  }
+
+  updateSubtitleCache(subtitle: { downloadTimes: number; id: string }): void {
+    this.updateCache(subtitle, this.SUBTITLE_CACHE_KEY, null);
   }
 }
