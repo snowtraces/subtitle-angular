@@ -56,14 +56,23 @@ export class SubtitleDetailComponent implements OnInit {
 
   ngOnInit() {
     this.subtitleId = (this.route.snapshot.paramMap.get('id'));
-    this.getMovieBySubtitleId();
+    this.getMovie();
     this.getSubtitleById();
     this.getSubtitleFile();
   }
 
-  private getMovieBySubtitleId(): void {
-    this.movieService.getMovieBySubtitleId(this.subtitleId)
-      .subscribe(movie => this.movie = movie);
+  private getMovie(): void {
+    const id = this.route.snapshot.paramMap.get('mid');
+    const movieCache = this.utils.getMovieCache(id);
+    if (movieCache) {
+      this.movie = movieCache;
+    } else {
+      this.movieService.getMovie(Number(id))
+        .subscribe(movie => {
+          this.movie = movie;
+          this.utils.setMovieCache(movie);
+        });
+    }
   }
 
   private getSubtitleById(): void {

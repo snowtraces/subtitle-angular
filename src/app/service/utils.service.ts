@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Color} from '../entity/color';
 import {Lang} from '../entity/lang';
+import {Movie} from '../entity/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -194,6 +195,11 @@ export class UtilsService {
     }
   }
 
+  /**
+   * 重新加载图片
+   * @param event
+   * @param count
+   */
   imageReload(event: any, count: number = 0): void {
     let tail = '_=';
     let imageDom = event.target || event || {};
@@ -209,4 +215,42 @@ export class UtilsService {
     }
   }
 
+  private MOVIE_CACHE_KEY = 'key_movie_cache';
+  private MOVIE_CACHE_MAX_SIZE = 2;
+
+  /**
+   * 获取本地电影缓存
+   *
+   * {data:{id:movie}, key:[]}
+   *
+   * @param id
+   */
+  getMovieCache(id: string): Movie {
+    let movieCache = localStorage.getItem(this.MOVIE_CACHE_KEY);
+    if (!movieCache || movieCache === 'undefined') {
+      return null;
+    }
+    return ((JSON.parse(movieCache) || {}).data || {})[id];
+  }
+
+  /**
+   * 设置本地电影缓存
+   * @param movie
+   */
+  setMovieCache(movie: Movie): void {
+    let id = movie.id;
+    let movieCache = JSON.parse(localStorage.getItem(this.MOVIE_CACHE_KEY)) || {};
+    let key = movieCache['key'] || [];
+    let data = movieCache['data'] || {};
+    if (key.length === this.MOVIE_CACHE_MAX_SIZE) {
+      let deleteKey = key.shift();
+      delete data[deleteKey];
+    }
+
+    key.push(id);
+    data[id] = movie;
+    movieCache['key'] = key;
+    movieCache['data'] = data;
+    localStorage.setItem(this.MOVIE_CACHE_KEY, JSON.stringify(movieCache));
+  }
 }

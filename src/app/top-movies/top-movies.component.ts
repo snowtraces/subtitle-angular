@@ -23,7 +23,10 @@ export class TopMoviesComponent implements OnInit {
   }
 
   getTopMovies(): void {
-    this.movies = JSON.parse(localStorage.getItem(this.KRY_HOT_MOVIES));
+    const cacheMovies = localStorage.getItem(this.KRY_HOT_MOVIES);
+    if (cacheMovies && cacheMovies !== 'undefined') {
+      this.movies = JSON.parse(cacheMovies);
+    }
     this.movieService.getTopMovies()
       .subscribe(movies => {
         if (this.checkIsUpdate(movies, this.movies)) {

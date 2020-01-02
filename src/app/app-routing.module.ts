@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'subEditor', component: SubEditorComponent},
   {path: 'movies', component: MoviesComponent},
   {path: 'movie/:id', component: MovieDetailComponent },
-  {path: 'subtitle/:id', component: SubtitleDetailComponent },
+  {path: 'subtitle/:mid/:id', component: SubtitleDetailComponent },
 ];
 
 @NgModule({

@@ -6,7 +6,6 @@ import {Movie} from '../entity/movie';
 import {UtilsService} from '../service/utils.service';
 import {SubtitleService} from '../service/subtitle.service';
 import {Subtitle} from '../entity/subtitle';
-import {Lang} from '../entity/lang';
 
 @Component({
   selector: 'app-movie-detail',
@@ -32,8 +31,16 @@ export class MovieDetailComponent implements OnInit {
 
   private getMovie(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.movieService.getMovie(Number(id))
-      .subscribe(movie => this.movie = movie);
+    const movieCache = this.utils.getMovieCache(id);
+    if (movieCache) {
+      this.movie = movieCache;
+    } else {
+      this.movieService.getMovie(Number(id))
+        .subscribe(movie => {
+          this.movie = movie;
+          this.utils.setMovieCache(movie);
+        });
+    }
   }
 
   private getSubtitles(): void {
