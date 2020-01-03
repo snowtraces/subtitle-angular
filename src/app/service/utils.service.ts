@@ -220,29 +220,62 @@ export class UtilsService {
   private SUBTITLE_CACHE_KEY = 'key_subtitle_cache';
   private cache_config = {
     'key_movie_cache': {
-      max_size: 100
+      max_size: 100,
+      expired_time: 30 * 24 * 60 * 60 * 1000,
     },
     'key_subtitle_cache': {
-      max_size: 300
+      max_size: 300,
+      expired_time: 30 * 24 * 60 * 60 * 1000,
     },
   };
 
   /**
-   * {data:{id:cache}, key:[]}
+   * {data:{id:cache}, key:[], time: {id:inTime}}
    *
    * @param id
-   * @param key
+   * @param cacheKey
    */
   private getCache(id: string, cacheKey: string) {
     let cache = localStorage.getItem(cacheKey);
     if (!cache || cache === 'undefined') {
       return null;
     }
-    return ((JSON.parse(cache) || {}).data || {})[id];
+    cache = JSON.parse(cache) || {};
+
+    // 检查时间是否过期，过期后删除本数据
+    let lastUpdateTime = (cache['time'] || {})[id] || 0;
+    let timePassed = new Date().getTime() - lastUpdateTime;
+    if (timePassed > this.cache_config[cacheKey].expired_time) {
+      let time = cache['time'] || {};
+      let key = cache['key'] || [];
+      let data = cache['data'] || {};
+
+      // 1. 删除time
+      delete time[id];
+      cache['time'] = time;
+
+      // 2. 删除key
+      let keyIndex = key.indexOf(id);
+      if (keyIndex !== -1) {
+        key.splice(keyIndex, 1);
+      }
+      cache['key'] = key;
+
+      // 3. 删除data
+      delete data[id];
+      cache['data'] = data;
+
+      localStorage.setItem(cacheKey, JSON.stringify(cache));
+      return null;
+    }
+
+    return (cache['data'] || {})[id];
   }
 
   /**
    * 设置本地缓存
+   *
+   * 超出数量后删除最旧数据
    * @param obj
    * @param cacheKey
    * @param idGetFun
@@ -251,6 +284,7 @@ export class UtilsService {
     let id = idGetFun ? idGetFun.call(null, obj) : obj['id'];
     let cache = JSON.parse(localStorage.getItem(cacheKey)) || {};
     let key = cache['key'] || [];
+    let time = cache['time'] || {};
     let data = cache['data'] || {};
     if (key.length === this.cache_config[cacheKey].max_size) {
       let deleteKey = key.shift();
@@ -258,17 +292,22 @@ export class UtilsService {
     }
 
     key.push(id);
-    data[id] = obj;
     cache['key'] = key;
+
+    data[id] = obj;
     cache['data'] = data;
+
+    time[id] = new Date().getTime();
+    cache['time'] = time;
+
     localStorage.setItem(cacheKey, JSON.stringify(cache));
   }
 
   /**
    * 更新指定缓存
-   * @param id
    * @param obj
    * @param cacheKey
+   * @param idGetFun
    */
   private updateCache(obj: Object, cacheKey: string, idGetFun: Function): void {
     let id = idGetFun ? idGetFun.call(null, obj) : obj['id'];
@@ -287,6 +326,7 @@ export class UtilsService {
 
     data[id] = cacheObj;
     cache['data'] = data;
+
     localStorage.setItem(cacheKey, JSON.stringify(cache));
   }
 
