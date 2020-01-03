@@ -1,5 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* fix scroll bar 导致抖动 */
+html {
+  overflow-y: scroll;
+}
+
+:root {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+:root body {
+  position: absolute;
+}
+
+body {
+  width: 100vw;
+  overflow: hidden;
+}
+
 body {
   font: 1em/150% Arial, Helvetica, sans-serif;
 }
