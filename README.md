@@ -1,11 +1,13 @@
 # SubtitleAngular
 
 ## TODO List
-+ 基于localstorage和时间的首页缓存
-+ 基于localstorage和时间的movie详情缓存
-+ 缓存淘汰机制
++ ~~基于localstorage的首页缓存~~
++ ~~基于localstorage和时间的movie详情缓存~~
++ ~~缓存淘汰机制~~
++ 字幕上传与编辑
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5.
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20
 
 ## Development server
 
@@ -18,6 +20,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+`ng build --prod --build-optimizer`
 
 ## Running unit tests
 
