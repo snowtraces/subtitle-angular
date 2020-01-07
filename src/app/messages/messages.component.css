@@ -1,4 +1,6 @@
+/* 调试信息 */
 .message {
+  display: none; /* 调试信息 */
   padding: 1rem;
   margin-bottom: -2rem;
 }
@@ -9,4 +11,19 @@
   padding: 0 5px;
   cursor: pointer;
   border-radius: 5px;
+}
+
+/* 通知消息 */
+.notice {
+  position: fixed;
+  z-index: 5;
+  top: 32px;
+  right: 32px;
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  color: #ffffff;
+  background: #4285f4;
+  border-radius: 3px;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+  transition:all .3s;
 }

@@ -16,6 +16,8 @@ import { TopMoviesComponent } from './top-movies/top-movies.component';
 import { CopyrightComponent } from './copyright/copyright.component';
 import { SubtitleDetailComponent } from './subtitle-detail/subtitle-detail.component';
 import { SafeHtmlPipe } from './service/safe-html-pipe.pipe';
+import { LoginComponent } from './auth/login/login.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,12 +33,15 @@ import { SafeHtmlPipe } from './service/safe-html-pipe.pipe';
     TopMoviesComponent,
     CopyrightComponent,
     SubtitleDetailComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

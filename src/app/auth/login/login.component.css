@@ -1,0 +1,65 @@
+#login-box {
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+.login-form {
+  padding-top: 2rem;
+  width: 280px;
+  margin: auto;
+}
+
+.login-form input {
+  padding: 10px;
+  border: 1px solid #666666;
+  border-radius: 3px;
+  width: 100%;
+  display: block;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.login-form button.login-btn {
+  padding: 10px;
+  border: 1px solid #3c82f4;
+  background: #4285f4;
+  color: #ffffff;
+  border-radius: 3px;
+  width: 100%;
+  display: block;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.login-form button.login-btn:hover {
+  background: #2164f4;
+}
+
+.password-complex {
+  height: 8px;
+  width: 0;
+  margin-bottom: 16px;
+  margin-top: -10px;
+  background: #eeeeee;
+  border-radius: 2px;
+}
+
+.account-notice {
+  color: #999999;
+  transition: all .2s;
+}
+
+.account-notice:hover {
+  color: #333333;
+}
+
+/* valid */
+.ng-dirty.ng-valid:not(form), .ng-touched.ng-valid:not(form) {
+  border: 1px solid #42A948 !important;
+}
+
+.ng-dirty.ng-invalid:not(form), .ng-touched.ng-invalid:not(form) {
+  border: 1px solid #a94442 !important;
+}

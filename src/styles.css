@@ -69,21 +69,6 @@ app-header {
   opacity: .8;
 }
 
-#header {
-}
-
-#message{
-  margin-top: 2rem;
-  background-color: #ccc;
-}
-
-#footer {
-  clear: both;
-  background-color: #333;
-  color: #ffffff;
-  margin-top: 2rem;
-}
-
 /************************************************************************************
 MEDIA QUERIES
 *************************************************************************************/

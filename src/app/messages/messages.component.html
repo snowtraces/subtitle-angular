@@ -1,7 +1,14 @@
 <div *ngIf="messageService.messages.length" class="message">
 
   <button class="clear"
-          (click)="messageService.clear()">clear</button>
+          (click)="messageService.clear()">clear
+  </button>
   <div *ngFor='let message of messageService.messages'> {{message}} </div>
 
+</div>
+
+<div *ngIf="messageService.notice" class="notice"
+     [ngStyle]="{background:messageService.notice.highLight ? '#a94442' : '#4285f4'}"
+>
+  {{messageService.notice.content}}
 </div>

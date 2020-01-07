@@ -5,6 +5,7 @@ import {SubEditorComponent} from './sub-editor/sub-editor.component';
 import {MoviesComponent} from './movies/movies.component';
 import {MovieDetailComponent} from './movie-detail/movie-detail.component';
 import {SubtitleDetailComponent} from './subtitle-detail/subtitle-detail.component';
+import {LoginComponent} from './auth/login/login.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'movies', component: MoviesComponent},
   {path: 'movie/:id', component: MovieDetailComponent },
   {path: 'subtitle/:mid/:id', component: SubtitleDetailComponent },
+  {path: 'auth/login', component: LoginComponent },
 ];
 
 @NgModule({
