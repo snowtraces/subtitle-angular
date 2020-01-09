@@ -8,6 +8,7 @@ export class MessageService {
 
   messages: string[] = [];
   notice: Notice;
+  timeOutHandler: any;
 
   add(message: string) {
     this.messages.push(message);
@@ -15,7 +16,8 @@ export class MessageService {
 
   addNotice(notice: Notice) {
     this.notice = notice;
-    setTimeout(() => this.notice = null, 2000);
+    clearTimeout(this.timeOutHandler);
+    this.timeOutHandler = setTimeout(() => this.notice = null, notice.highLight ? 2000 : 800);
   }
 
   clear() {

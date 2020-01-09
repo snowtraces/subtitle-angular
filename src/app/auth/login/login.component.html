@@ -1,6 +1,6 @@
 <div id="login-container">
   <div class="w" id="login-box">
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="login-form" novalidate>
+    <form *ngIf="this.readyLoad" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="login-form" novalidate>
       <input type="text" name="name" placeholder="用户名" autocomplete="off" ngModel #name="ngModel" required>
       <input type="password" name="password" placeholder="密码" autocomplete="off" ngModel #password="ngModel" required>
       <div class="password-complex" [ngStyle]="{width:genComplex(password.value)}"></div>

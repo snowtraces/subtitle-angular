@@ -1,8 +1,11 @@
 #wrapper {
-  min-height: calc(100vh - 85px);
+  min-height: 100vh;
   position: relative;
   width: 100%;
-  padding-bottom: 85px;
+}
+
+#content {
+  padding-bottom: 56px;
 }
 
 #footer {
@@ -13,9 +16,4 @@
   background-color: #333;
   color: #ffffff;
   margin-top: 2rem;
-}
-
-#message{
-  margin-top: 2rem;
-  background-color: #ccc;
 }

@@ -1,0 +1,16 @@
+<mat-sidenav-container id="admin-container" class="">
+  <mat-sidenav mode="side" opened>
+    <div class="menu-header">控制台</div>
+    <ul>
+      <li *ngFor="let menu of menus" class="menu-item"
+          [class.active]="menu.active"
+          (click)="activeMenu($event)"
+          routerLink="{{menu.target}}"
+          id="{{menu.name}}"
+      >{{menu.name}}</li>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

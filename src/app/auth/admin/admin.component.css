@@ -1,0 +1,24 @@
+/* 布局 */
+#admin-container {
+  height: calc(100vh - 64px - 56px);
+  overflow: auto;
+}
+
+.menu-header {
+  padding: 10px 12px;
+  background: #333333;
+  color: #ffffff;
+}
+
+.menu-item {
+  width: 160px;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: all .1s;
+}
+
+.menu-item:hover, .menu-item.active  {
+  background: #2976f4;
+  color: #ffffff;
+}

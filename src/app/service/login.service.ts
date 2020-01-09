@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {MessageService} from './message.service';
-import {Movie} from '../entity/movie';
 import {catchError, tap} from 'rxjs/operators';
 import {User} from '../entity/user';
 import {Resp} from '../entity/resp';
@@ -12,6 +11,7 @@ import {Resp} from '../entity/resp';
 })
 export class LoginService {
   private loginPath = 'api/login';
+  private autoLoginPath = 'api/autoLogin';
   private signUpPath = 'api/signUp';
 
   constructor(
@@ -37,6 +37,14 @@ export class LoginService {
       .pipe(
         tap<any>(() => this.log(`login name=${name}, password=${password}`)),
         catchError(this.handleError<Resp>(`login name=${name}, password=${password}`))
+      );
+  }
+
+  autoLogin(): Observable<Resp> {
+    return this.http.post<User>(`${this.autoLoginPath}`, null)
+      .pipe(
+        tap<any>(() => this.log(`autoLogin`)),
+        catchError(this.handleError<Resp>(`autoLogin`))
       );
   }
 

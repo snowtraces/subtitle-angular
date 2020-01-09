@@ -1,6 +1,6 @@
 {
   "/api":{
-    "target":"http://localhost:9090/"
+    "target":"http://localhost:19090/"
   },
   "/assets": {
     "target": "http://localhost:8880/",

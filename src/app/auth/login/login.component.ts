@@ -3,7 +3,8 @@ import {LoginService} from '../../service/login.service';
 import {NgForm} from '@angular/forms';
 import {MessageService} from '../../service/message.service';
 import {Notice} from '../../entity/notice';
-import {strict} from 'assert';
+import {Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -12,19 +13,23 @@ import {strict} from 'assert';
 })
 export class LoginComponent implements OnInit {
 
+  readyLoad = false;
   pageStatus = {
     isLogin: true,
     accountNotice: '没有账号，去注册',
-    buttonText: '登录'
+    buttonText: '登录',
   };
 
   constructor(
     private loginService: LoginService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router,
+    private cookieService: CookieService,
   ) {
   }
 
   ngOnInit() {
+    this.tryAutoLogin();
   }
 
   genComplex(password: string): string {
@@ -58,6 +63,18 @@ export class LoginComponent implements OnInit {
     return `${percent}%`;
   }
 
+  private tryAutoLogin() {
+    this.loginService.autoLogin()
+      .subscribe(resp => {
+        console.log(resp);
+        if (resp && resp.code < 200) {
+          this.router.navigateByUrl('auth/admin');
+        } else {
+          this.readyLoad = true;
+        }
+      });
+  }
+
   private doLogin(name: string, password: string) {
     this.loginService.login(name, password)
       .subscribe(resp => {
@@ -67,8 +84,10 @@ export class LoginComponent implements OnInit {
         } else if (resp.code >= 200) {
           this.messageService.addNotice(new Notice(resp.msg || '请求异常', true));
         } else {
+          this.cookieService.delete('token', '/');
+          this.cookieService.set('token', resp.data, 30, '/');
           this.messageService.addNotice(new Notice(resp.msg || '登录成功'));
-          // TODO 跳转到管理页面
+          this.router.navigateByUrl('auth/admin');
         }
       });
   }
@@ -83,7 +102,7 @@ export class LoginComponent implements OnInit {
           this.messageService.addNotice(new Notice(resp.msg || '请求异常', true));
         } else {
           this.messageService.addNotice(new Notice(resp.msg || '注册成功'));
-          // TODO 跳转到登陆页面或者直接登录
+          this.doLogin(name, password);
         }
       });
   }
@@ -105,13 +124,13 @@ export class LoginComponent implements OnInit {
       this.pageStatus = {
         isLogin: false,
         accountNotice: '已有账号，去登录',
-        buttonText: '注册'
+        buttonText: '注册',
       };
     } else {
       this.pageStatus = {
         isLogin: true,
         accountNotice: '没有账号，去注册',
-        buttonText: '登录'
+        buttonText: '登录',
       };
     }
   }
