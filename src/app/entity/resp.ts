@@ -1,5 +1,5 @@
-export class Resp {
+export class Resp<T = any> {
   code: number;
   msg: string;
-  data: any;
+  data: T;
 }

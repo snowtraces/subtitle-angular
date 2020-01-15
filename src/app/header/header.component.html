@@ -4,5 +4,12 @@
     <a routerLink="/home">home</a>
     <a routerLink="/subEditor">subEditor</a>
     <a routerLink="/auth/login">login</a>
+
+    <div *ngIf="loginService.loginUser" class="login-user" >
+      <span class="user-name">{{loginService.loginUser.name}}</span>
+      <span class="logout-btn" (click)="logout()">退出登录</span>
+    </div>
   </nav>
+
+
 </header>

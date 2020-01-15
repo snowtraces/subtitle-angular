@@ -14,6 +14,8 @@ export class LoginService {
   private autoLoginPath = 'api/autoLogin';
   private signUpPath = 'api/signUp';
 
+  loginUser: User;
+
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
@@ -32,19 +34,19 @@ export class LoginService {
     };
   }
 
-  login(name: string, password: string): Observable<Resp> {
+  login(name: string, password: string): Observable<Resp<User>> {
     return this.http.post<User>(`${this.loginPath}`, {name, password})
       .pipe(
         tap<any>(() => this.log(`login name=${name}, password=${password}`)),
-        catchError(this.handleError<Resp>(`login name=${name}, password=${password}`))
+        catchError(this.handleError<Resp<User>>(`login name=${name}, password=${password}`))
       );
   }
 
-  autoLogin(): Observable<Resp> {
+  autoLogin(): Observable<Resp<User>> {
     return this.http.post<User>(`${this.autoLoginPath}`, null)
       .pipe(
         tap<any>(() => this.log(`autoLogin`)),
-        catchError(this.handleError<Resp>(`autoLogin`))
+        catchError(this.handleError<Resp<User>>(`autoLogin`))
       );
   }
 

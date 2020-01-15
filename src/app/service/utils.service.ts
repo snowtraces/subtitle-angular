@@ -3,6 +3,7 @@ import {Color} from '../entity/color';
 import {Lang} from '../entity/lang';
 import {Movie} from '../entity/movie';
 import {Subtitle} from '../entity/subtitle';
+import {User} from '../entity/user';
 
 @Injectable({
   providedIn: 'root'
@@ -216,9 +217,14 @@ export class UtilsService {
     }
   }
 
+  private LOGIN_USER_CACHE_KEY = 'login_user_cache_key';
   private MOVIE_CACHE_KEY = 'key_movie_cache';
   private SUBTITLE_CACHE_KEY = 'key_subtitle_cache';
   private cache_config = {
+    'login_user_cache_key': {
+      max_size: 1,
+      expired_time: 30 * 24 * 60 * 60 * 1000,
+    },
     'key_movie_cache': {
       max_size: 100,
       expired_time: 30 * 24 * 60 * 60 * 1000,
@@ -348,5 +354,14 @@ export class UtilsService {
 
   updateSubtitleCache(subtitle: { downloadTimes: number; id: string }): void {
     this.updateCache(subtitle, this.SUBTITLE_CACHE_KEY, null);
+  }
+
+  setLoginUserCache(user: User): void {
+    localStorage.setItem(this.LOGIN_USER_CACHE_KEY, JSON.stringify(user));
+  }
+
+  getLoginUserCache(): User {
+    const loginUser = localStorage.getItem(this.LOGIN_USER_CACHE_KEY);
+    return loginUser ? JSON.parse(loginUser) : null;
   }
 }

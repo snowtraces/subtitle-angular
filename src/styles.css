@@ -50,6 +50,7 @@ input, button {
   outline: none;
   border: none;
 }
+
 .w {
   display: block;
   max-width: 960px;
@@ -93,4 +94,9 @@ MEDIA QUERIES
 /* for 480px or less */
 @media screen and (max-width: 480px) {
 
+}
+
+/** 样式覆盖 **/
+#admin-container * {
+  font-family: Arial, Helvetica, sans-serif !important;
 }

@@ -15,6 +15,7 @@ h2 {
 }
 
 nav {
+  position: relative;
   display: block;
   margin-left: 120px;
   height: 64px;
@@ -30,5 +31,23 @@ nav > a {
 }
 
 nav > a:hover {
+  background-color: #35393e;
+}
+
+.login-user {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.login-user > span {
+  display: inline-block;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+.login-user > span.logout-btn:hover {
   background-color: #35393e;
 }

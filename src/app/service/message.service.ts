@@ -15,8 +15,13 @@ export class MessageService {
   }
 
   addNotice(notice: Notice) {
+    if (this.timeOutHandler) {
+      clearTimeout(this.timeOutHandler);
+      this.timeOutHandler = null;
+      this.notice = null;
+    }
+
     this.notice = notice;
-    clearTimeout(this.timeOutHandler);
     this.timeOutHandler = setTimeout(() => this.notice = null, notice.highLight ? 2000 : 800);
   }
 

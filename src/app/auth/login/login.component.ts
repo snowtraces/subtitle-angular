@@ -5,6 +5,9 @@ import {MessageService} from '../../service/message.service';
 import {Notice} from '../../entity/notice';
 import {Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
+import {Resp} from '../../entity/resp';
+import {User} from '../../entity/user';
+import {UtilsService} from '../../service/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +28,7 @@ export class LoginComponent implements OnInit {
     private messageService: MessageService,
     private router: Router,
     private cookieService: CookieService,
+    private utils: UtilsService
   ) {
   }
 
@@ -68,6 +72,9 @@ export class LoginComponent implements OnInit {
       .subscribe(resp => {
         console.log(resp);
         if (resp && resp.code < 200) {
+          this.addToken2Cookie(resp);
+          this.loginService.loginUser = resp.data;
+          this.utils.setLoginUserCache(resp.data);
           this.router.navigateByUrl('auth/admin');
         } else {
           this.readyLoad = true;
@@ -84,12 +91,18 @@ export class LoginComponent implements OnInit {
         } else if (resp.code >= 200) {
           this.messageService.addNotice(new Notice(resp.msg || '请求异常', true));
         } else {
-          this.cookieService.delete('token', '/');
-          this.cookieService.set('token', resp.data, 30, '/');
+          this.addToken2Cookie(resp);
+          this.loginService.loginUser = resp.data;
+          this.utils.setLoginUserCache(resp.data);
           this.messageService.addNotice(new Notice(resp.msg || '登录成功'));
           this.router.navigateByUrl('auth/admin');
         }
       });
+  }
+
+  private addToken2Cookie(resp: Resp<User>): void {
+    this.cookieService.delete('token', '/');
+    this.cookieService.set('token', resp.data.token, 30, '/');
   }
 
   private signUp(name: string, password: string) {
