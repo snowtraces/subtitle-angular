@@ -12,7 +12,7 @@ import {UtilsService} from '../service/utils.service';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private loginService: LoginService,
+    public loginService: LoginService,
     private cookieService: CookieService,
     private router: Router,
     private utils: UtilsService
