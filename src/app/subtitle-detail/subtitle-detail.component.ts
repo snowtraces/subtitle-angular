@@ -21,12 +21,12 @@ export class SubtitleDetailComponent implements OnInit {
 
   showModal: boolean;
   downloaded: boolean;
-  @ViewChild('fileModal', {static: false}) fileModal: ElementRef;
-  @ViewChild('modelContent', {static: false}) modalContent: ElementRef;
-  @ViewChild('subVersion', {static: false}) subVersion: ElementRef;
-  @ViewChild('subBanner', {static: false}) subBanner: ElementRef;
-  @ViewChild('subFile', {static: false}) subFile: ElementRef;
-  @ViewChild('downloadBtn', {static: false}) downloadBtn: ElementRef;
+  @ViewChild('fileModal') fileModal: ElementRef;
+  @ViewChild('modelContent') modalContent: ElementRef;
+  @ViewChild('subVersion') subVersion: ElementRef;
+  @ViewChild('subBanner') subBanner: ElementRef;
+  @ViewChild('subFile') subFile: ElementRef;
+  @ViewChild('downloadBtn') downloadBtn: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
